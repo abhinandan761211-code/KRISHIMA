@@ -14,7 +14,7 @@ from logging.config import fileConfig
 from pathlib import Path
 
 from alembic import context
-from sqlalchemy import engine_from_config, pool
+from sqlalchemy import create_engine, pool
 
 # --- make the backend package importable (metadata lives in app.shared) -----------
 ROOT = Path(__file__).resolve().parents[2]  # repository root
@@ -88,9 +88,15 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
-    section = config.get_section(config.config_ini_section, {})
-    section["sqlalchemy.url"] = _migration_url()
-    connectable = engine_from_config(section, prefix="sqlalchemy.", poolclass=pool.NullPool)
+    # Build the engine DIRECTLY from the URL rather than via engine_from_config().
+    #
+    # Why: the migration password must be percent-encoded (e.g. `Rail%402026Abhi`
+    # for `Rail@2026Abhi`), and `engine_from_config` round-trips the value through
+    # Python's ConfigParser, which treats `%` as interpolation syntax and raises
+    # `ValueError: invalid interpolation syntax`. That failure used to be swallowed,
+    # so `alembic upgrade` exited 0 while applying nothing (the B-1 `app` schema
+    # stayed empty). create_engine() takes the string verbatim, so `%` is safe.
+    connectable = create_engine(_migration_url(), poolclass=pool.NullPool, future=True)
     with connectable.connect() as connection:
         # Ensure the application schema exists before any version tracking.
         connection.exec_driver_sql(f'CREATE SCHEMA IF NOT EXISTS "{DB_SCHEMA}"')
@@ -104,6 +110,15 @@ def run_migrations_online() -> None:
         )
         with context.begin_transaction():
             context.run_migrations()
+        # COMMIT EXPLICITLY.
+        #
+        # SQLAlchemy 2.0 puts a Connection in "begin once" mode: the
+        # exec_driver_sql() above opens a transaction, and closing the connection
+        # without commit() rolls it back. Alembic's context.begin_transaction()
+        # only nests inside that transaction, so without this line every migration
+        # (schema, functions, alembic_version rows) is silently discarded while
+        # `alembic upgrade` still exits 0. That was the final layer of B-1.
+        connection.commit()
 
 
 if context.is_offline_mode():
