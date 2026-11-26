@@ -50,7 +50,8 @@ export const en: Messages = {
   "hero.description":
     "One connected digital platform for farmers, agricultural businesses, workers, and essential farming services.",
   "hero.supportNote": "Account creation is being built. You can explore everything the platform will offer today.",
-  "hero.imageAlt": "A wheat field at sunrise under a clear sky",
+  "hero.imageAlt":
+    "Two farmers standing in a green wheat field, looking at a laptop together",
   "hero.rolesCaption": "Built for",
   "hero.rolesSummary": "Eight kinds of agricultural work",
 

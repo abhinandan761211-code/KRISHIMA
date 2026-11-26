@@ -10,8 +10,9 @@ import { AppLink } from "../components/AppLink";
  *    `fetchpriority="high"` because it is the LCP element, and a fixed aspect
  *    ratio so it reserves space and never causes layout shift;
  *  - the <picture> art direction keeps the phone payload small;
- *  - no WebP/AVIF variants yet: the source is a JPEG and transcoding needs a build
- *    step, which is documented as a limitation rather than hidden.
+ *  - the shipped source is a small JPEG stock photo, so the 1600w variant is a
+ *    Lanczos upscale, not a native-resolution file; this is documented as a
+ *    limitation rather than hidden.
  *
  * No statistics, no counts, no claims — the copy avoids unverifiable numbers
  * because the platform has no launched population yet.
@@ -71,20 +72,25 @@ export function HeroSection() {
               <source
                 type="image/webp"
                 media="(max-width: 640px)"
-                srcSet="/images/hero-farm-800.webp"
+                srcSet="/images/hero-banner-800.webp"
                 width={800}
                 height={450}
               />
-              <source type="image/webp" srcSet="/images/hero-farm-1600.webp" width={1600} height={900} />
+              <source
+                type="image/webp"
+                srcSet="/images/hero-banner-1600.webp"
+                width={1600}
+                height={900}
+              />
               <source
                 media="(max-width: 640px)"
-                srcSet="/images/hero-farm-800.jpg"
+                srcSet="/images/hero-banner-800.jpg"
                 width={800}
                 height={450}
               />
               <img
-                src="/images/hero-farm-1600.jpg"
-                srcSet="/images/hero-farm-800.jpg 800w, /images/hero-farm-1600.jpg 1600w"
+                src="/images/hero-banner-1600.jpg"
+                srcSet="/images/hero-banner-800.jpg 800w, /images/hero-banner-1600.jpg 1600w"
                 sizes="(max-width: 1024px) 100vw, 560px"
                 width={1600}
                 height={900}
