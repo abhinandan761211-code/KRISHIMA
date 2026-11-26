@@ -98,7 +98,7 @@ test.describe("Hindi", () => {
     const panel = page.locator("#public-mobile-menu");
     await expect(panel.getByRole("link").first()).toBeVisible();
     // The language switcher and theme control are present in the panel.
-    await expect(panel.getByRole("radiogroup", { name: /थीम|theme/i })).toBeVisible();
+    await expect(panel.getByRole("button", { name: /^theme:|थीम/i })).toBeVisible();
   });
 
   test("Hindi pages pass axe WCAG 2.2 AA", async ({ page }) => {

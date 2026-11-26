@@ -60,7 +60,7 @@ test.describe("public navigation", () => {
     await expect(trigger).toHaveAttribute("aria-expanded", "true");
     // The panel exposes navigation, and the controls live inside it on mobile.
     await expect(page.locator("#public-mobile-menu").getByRole("link").first()).toBeVisible();
-    await expect(page.locator("#public-mobile-menu").getByRole("radiogroup", { name: "Theme" })).toBeVisible();
+    await expect(page.locator("#public-mobile-menu").getByRole("button", { name: /^theme:/i })).toBeVisible();
 
     await page.keyboard.press("Escape");
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -114,15 +114,44 @@ test.describe("theme", () => {
   test("persists across reload and applies data-theme", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
-    // The switcher is a radiogroup (Light / Dark / System), shown from xl only.
-    const group = page.getByRole("radiogroup", { name: "Theme" }).first();
-    await group.getByRole("radio", { name: "Dark" }).click();
+    // The switcher is a single button that opens a menu (Light / Dark / System),
+    // so the choice is two clicks instead of always-on segmented controls.
+    const openTheme = async () => {
+      await page.getByRole("button", { name: /^theme:/i }).first().click();
+      await expect(page.getByRole("menu")).toBeVisible();
+    };
+
+    await openTheme();
+    await page.getByRole("menuitemradio", { name: "Dark" }).click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
     await page.reload();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
-    await page.getByRole("radiogroup", { name: "Theme" }).first().getByRole("radio", { name: "Light" }).click();
+    await openTheme();
+    await page.getByRole("menuitemradio", { name: "Light" }).click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  });
+
+  test("menu opens by keyboard, Escape closes and returns focus", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    const trigger = page.getByRole("button", { name: /^theme:/i }).first();
+    await trigger.focus();
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("menu")).toBeVisible();
+    await expect(page.getByRole("menuitemradio")).toHaveCount(3);
+
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("menu")).toBeHidden();
+    await expect(trigger).toBeFocused();
+  });
+
+  test("the active option is marked with aria-checked on exactly one item", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    await page.getByRole("button", { name: /^theme:/i }).first().click();
+    const checked = page.getByRole("menuitemradio", { checked: true });
+    await expect(checked).toHaveCount(1);
   });
 });

@@ -27,7 +27,7 @@ export function PublicFooter() {
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <LanguageSwitcher className="text-[color:var(--kr-footer-fg)]" />
-              <ThemeSwitcher />
+              <ThemeSwitcher variant="inherit" />
             </div>
           </div>
 

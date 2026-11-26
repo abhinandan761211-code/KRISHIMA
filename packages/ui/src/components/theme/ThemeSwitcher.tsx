@@ -1,56 +1,65 @@
 import { useTheme } from "../../theme/ThemeProvider";
-import { cn } from "../../lib/cn";
 import type { ThemePreference } from "../../theme/theme";
+import { DropdownMenu } from "../navigation/DropdownMenu";
 
-const OPTIONS: { value: ThemePreference; label: string; icon: string }[] = [
-  { value: "light", label: "Light", icon: "☀" },
-  { value: "dark", label: "Dark", icon: "☾" },
-  { value: "system", label: "System", icon: "⌘" },
+const OPTIONS: { value: ThemePreference; label: string; glyph: string }[] = [
+  { value: "light", label: "Light", glyph: "☀" },
+  { value: "dark", label: "Dark", glyph: "☾" },
+  { value: "system", label: "System", glyph: "⌘" },
 ];
 
 /**
- * Segmented theme switcher (Light / Dark / System).
- * Uses a radiogroup so arrow keys + screen readers work natively.
+ * Theme switcher — a single compact button that opens a menu.
+ *
+ * Why not the previous segmented control: showing Light/Dark/System side by side
+ * took ~200px of the navbar, which forced the language switcher out of the bar at
+ * 1024–1280px and left the row permanently tight. One icon button is ~44px, and the
+ * choice is one click away in a menu instead of always on screen.
+ *
+ * The trigger shows the CURRENT preference's glyph, so the state is still visible
+ * without opening the menu, and `aria-label` names it for screen readers.
+ *
+ * The menu reuses the shared DropdownMenu (Escape, outside-click, focus return,
+ * roving focus) rather than re-implementing the pattern; items render as
+ * `menuitemradio` with `aria-checked`, so assistive tech hears "selected".
  */
-export function ThemeSwitcher({ className }: { className?: string }) {
+export function ThemeSwitcher({
+  className,
+  variant = "ghost",
+}: {
+  className?: string;
+  /**
+   * `inherit` on coloured surfaces (the green footer): the control takes the
+   * surrounding text colour instead of a fixed one. `ghost` in navbars.
+   */
+  variant?: "ghost" | "inherit";
+}) {
   const { preference, setPreference } = useTheme();
+  const current = OPTIONS.find((o) => o.value === preference) ?? OPTIONS[0];
 
   return (
-    <div
-      role="radiogroup"
-      aria-label="Theme"
-      className={cn(
-        "inline-flex items-center gap-1 rounded-[var(--kr-radius-md)] border p-1",
-        "border-[color:var(--kr-border)] bg-[color:var(--kr-surface-secondary)]",
-        className,
-      )}
-    >
-      {OPTIONS.map((opt) => {
-        const selected = preference === opt.value;
-        return (
-          <button
-            key={opt.value}
-            type="button"
-            role="radio"
-            aria-checked={selected}
-            onClick={() => setPreference(opt.value)}
-            className={cn(
-              // min-h 40px (not 32): the segmented control is a primary touch
-              // control on mobile, and 32px fell short of the house 44px guideline
-              // (it passed WCAG 2.5.8's 24px floor, but that is a floor, not a goal).
-              "inline-flex min-h-[40px] items-center gap-1.5 rounded-[var(--kr-radius-sm)] px-2.5 text-[13px] font-medium",
-              "transition-colors duration-[var(--kr-motion-fast)]",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--kr-focus-ring)] focus-visible:ring-offset-1",
-              selected
-                ? "bg-[color:var(--kr-surface)] text-[color:var(--kr-fg)] shadow-[var(--kr-shadow-xs)]"
-                : "text-[color:var(--kr-fg-muted)] hover:bg-[color:var(--kr-surface-muted)]",
-            )}
-          >
-            <span aria-hidden="true">{opt.icon}</span>
-            <span>{opt.label}</span>
-          </button>
-        );
-      })}
-    </div>
+    <DropdownMenu
+      className={className}
+      align="end"
+      triggerVariant={variant}
+      label={`Theme: ${current.label}`}
+      trigger={
+        <span className="inline-flex items-center gap-1">
+          <span aria-hidden="true" className="text-base leading-none">
+            {current.glyph}
+          </span>
+          {/* The glyph is the primary signal; this label keeps the control from
+              looking like an unlabelled icon on wider screens. */}
+          <span className="hidden text-[13px] sm:inline">{current.label}</span>
+        </span>
+      }
+      items={OPTIONS.map((opt) => ({
+        key: opt.value,
+        label: opt.label,
+        icon: <span className="text-base leading-none">{opt.glyph}</span>,
+        checked: preference === opt.value,
+        onSelect: () => setPreference(opt.value),
+      }))}
+    />
   );
 }
