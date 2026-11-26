@@ -65,14 +65,27 @@ export function HeroSection() {
         <div className="relative">
           <div className="overflow-hidden rounded-[var(--kr-radius-lg)] border border-[color:var(--kr-border)] bg-[color:var(--kr-surface-muted)] shadow-[var(--kr-shadow-sm)]">
             <picture>
+              {/* WebP first: ~45% smaller than the JPEG fallback on typical connections.
+               * Two width variants let the browser pick by viewport; the small one is
+               * used below 640px. Both are 16:9 so the container never shifts. */}
+              <source
+                type="image/webp"
+                media="(max-width: 640px)"
+                srcSet="/images/hero-farm-800.webp"
+                width={800}
+                height={450}
+              />
+              <source type="image/webp" srcSet="/images/hero-farm-1600.webp" width={1600} height={900} />
               <source
                 media="(max-width: 640px)"
-                srcSet="/images/hero-farm-800.svg"
+                srcSet="/images/hero-farm-800.jpg"
                 width={800}
                 height={450}
               />
               <img
-                src="/images/hero-farm-1600.svg"
+                src="/images/hero-farm-1600.jpg"
+                srcSet="/images/hero-farm-800.jpg 800w, /images/hero-farm-1600.jpg 1600w"
+                sizes="(max-width: 1024px) 100vw, 560px"
                 width={1600}
                 height={900}
                 alt={t("hero.imageAlt")}

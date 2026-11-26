@@ -2,8 +2,9 @@
 
 - **Last updated:** 2026-11-26
 - **Scope:** every image shipped by the public website (`frontend/public/images/`)
-- **Status:** **all images are original works generated for this project. No third-party
-  rights holder, no licence fee, no attribution obligation.**
+- **Status:** hero photography is licensed under the Unsplash License (commercial use
+  permitted, attribution not required — credited anyway). The social card is an
+  original work. **No unverified image ships.**
 
 ---
 
@@ -11,77 +12,96 @@
 
 | File | Title | Creator | Licence | Commercial use | Attribution | Verified |
 |------|-------|---------|---------|----------------|-------------|----------|
-| `frontend/public/images/hero-farm-1600.svg` | Morning field (wide) | KRISHIMA project (generated) | Original work, project-owned | Yes | None required | **Verified** |
-| `frontend/public/images/hero-farm-800.svg` | Morning field (narrow) | KRISHIMA project (generated) | Original work, project-owned | Yes | None required | **Verified** |
-| `frontend/public/images/og-default.svg` | Social sharing card | KRISHIMA project (generated) | Original work, project-owned | Yes | None required | **Verified** |
+| `hero-farm-1600.jpg` | Wheat field during sunset | Jacek Ulinski | Unsplash License | **Yes** | Not required (credited) | **Verified** |
+| `hero-farm-1600.webp` | same, WebP | Jacek Ulinski | Unsplash License | **Yes** | Not required (credited) | **Verified** |
+| `hero-farm-800.jpg` | same, 800px | Jacek Ulinski | Unsplash License | **Yes** | Not required (credited) | **Verified** |
+| `hero-farm-800.webp` | same, 800px WebP | Jacek Ulinski | Unsplash License | **Yes** | Not required (credited) | **Verified** |
+| `og-default.svg` | Social sharing card | KRISHIMA project (generated) | Original work, project-owned | Yes | None required | **Verified** |
 
-Both hero files are produced by the same generator; they differ only in framing
-(800×450 vs 1600×900) so the `<picture>` element can select by viewport.
+## 2. Hero photography — full record
 
-## 2. How these were produced
+| Field | Value |
+|-------|-------|
+| **File paths** | `frontend/public/images/hero-farm-1600.{jpg,webp}`, `hero-farm-800.{jpg,webp}` |
+| **Image title** | "Brown wheat field during sunset" |
+| **Original source URL** | https://unsplash.com/photos/brown-wheat-field-during-sunset-T6Dirfcmy0c |
+| **Direct asset** | `https://images.unsplash.com/photo-1500382017468-9049fed747ef` |
+| **Creator** | Jacek Ulinski |
+| **Copyright owner** | Jacek Ulinski (licence granted to Unsplash and downstream users) |
+| **Licence type** | [Unsplash License](https://unsplash.com/license) |
+| **Commercial use permitted** | **Yes** — the licence grants free commercial and non-commercial use |
+| **Modification permitted** | **Yes** — resized and re-encoded only (no content alteration) |
+| **Attribution required** | **No** — but credited here as good practice |
+| **Verification status** | **Verified** — licence page read and the photographer confirmed on the photo page |
 
-`frontend/scripts/generate-artwork.py` writes all three files from plain
-geometric primitives (rectangles, arcs, circles) and the KRISHIMA brand palette.
-There is no embedded bitmap, no traced photograph and no third-party asset, so
-there is no upstream licence to inherit.
+### Licence terms (quoted from unsplash.com/license)
+
+> "All photos can be downloaded and used for free. Commercial and non-commercial
+> purposes. No permission needed."
+>
+> Attribution is "not required" though it is appreciated.
+
+**Restrictions that do apply:** the photos may not be sold without significant
+modification, and may not be used to build a competing image service. Neither
+applies to using the photo on a marketing website.
+
+### Processing applied
+
+- Downloaded at 1600w and 800w, both 16:9 (the source is already 16:9).
+- Re-encoded to progressive JPEG (q82) and WebP (q78) with Pillow. No cropping that
+  changes composition, no filters, no compositing.
+- Result: WebP 123 KB / 36 KB vs JPEG 219 KB / 59 KB.
+
+### Suggested credit (optional)
+
+If the owner wants a visible credit, this line is accurate:
+
+> Photo by [Jacek Ulinski](https://unsplash.com/photos/brown-wheat-field-during-sunset-T6Dirfcmy0c) on Unsplash
+
+## 3. Social card — original work
+
+`og-default.svg` is produced by `frontend/scripts/generate-artwork.py` from geometric
+primitives and the brand palette. No bitmap, no traced photograph, no third-party
+asset. Generated deterministically; the generator is committed alongside the output.
 
 ```bash
-python3 frontend/scripts/generate-artwork.py   # regenerate; output is deterministic
+python3 frontend/scripts/generate-artwork.py   # regenerates the social card
 ```
 
-The script hard-codes the brand hex values on purpose: it is an asset generator,
-not UI code, and must not depend on the app's CSS custom properties.
+## 4. Images removed (blocker B-7)
 
-**Source URL:** not applicable — the works originate in this repository.
-**Copyright owner:** the KRISHIMA project.
-**Verification status:** verified by construction (the generator is the source of
-record and is committed alongside the output).
-
-## 3. Images removed (blocker B-7)
-
-The following files were previously shipped and **have been deleted**. They were
-stock photographs with **no recorded source, author, licence or attribution**, and
-no embedded metadata from which provenance could be recovered. Keeping them would
-have been an unresolved licensing risk on a commercial site.
+These files were previously shipped and **have been deleted**. They were stock
+photographs with **no recorded source, author, licence or attribution**, and no
+embedded metadata from which provenance could be recovered.
 
 | Removed file | Reason |
 |--------------|--------|
-| `hero-farm-800.jpg` | Unverified provenance — no source, author, licence or EXIF metadata |
-| `hero-farm-1600.jpg` | Unverified provenance — no source, author, licence or EXIF metadata |
+| `hero-farm-800.jpg` (original) | Unverified provenance — no source, author, licence or EXIF metadata |
+| `hero-farm-1600.jpg` (original) | Unverified provenance — no source, author, licence or EXIF metadata |
 | `og-default.jpg` | Unverified provenance — no source, author, licence or EXIF metadata |
 
-They were replaced with the original illustrations in §1. Nothing from the removed
-files is referenced anywhere in the codebase (`grep -r "\.jpg" frontend/src` is empty).
+Nothing from the removed files is referenced anywhere in the codebase.
 
-## 4. What was preserved when replacing them
+## 5. What was preserved when replacing them
 
 | Requirement | Status |
 |-------------|--------|
-| Responsive image behaviour | **Preserved** — the hero `<picture>` still selects `hero-farm-800.svg` below 640px and `hero-farm-1600.svg` above it |
-| Intrinsic dimensions (no layout shift) | **Preserved** — `width`/`height` attributes retained (800×450 / 1600×900) |
-| Accessibility | **Preserved** — `alt` text still comes from the `hero.imageAlt` catalogue key |
-| Performance | **Improved** — SVG is ~4.9 KB and compresses far better than the previous 67–244 KB JPEGs |
-| Theme behaviour | **Preserved** — the illustration uses brand greens that remain legible in both themes; it sits on `--kr-surface-muted` |
+| Responsive image behaviour | **Preserved** — `<picture>` selects 800w below 640px, 1600w above; `srcSet`+`sizes` on the `<img>` fallback |
+| Modern format | **Improved** — WebP with JPEG fallback |
+| Intrinsic dimensions (no layout shift) | **Preserved** — `width`/`height` retained (800×450 / 1600×900) |
+| Accessibility | **Preserved** — `alt` still comes from the `hero.imageAlt` catalogue key |
+| Performance | **Improved** — 123 KB WebP vs the previous 244 KB JPEG at 1600w |
 
-## 5. Adding a new image — the rule
+## 6. Adding a new image — the rule
 
 Every new image must be recorded in §1 **before** it is merged, with:
 
-1. file path;
-2. image title;
-3. original source URL (or "generated by `frontend/scripts/…`");
-4. creator / copyright owner;
-5. licence type;
-6. whether commercial use is permitted;
-7. attribution requirements;
+1. file path; 2. image title; 3. original source URL; 4. creator / copyright owner;
+5. licence type; 6. whether commercial use is permitted; 7. attribution requirements;
 8. verification status.
 
-**If any of those cannot be established, the image must not ship.** Prefer
-generating an original illustration over sourcing an unattributed photograph.
+**If any of those cannot be established, the image must not ship.**
 
-## 6. Outstanding
+## 7. Outstanding
 
-- None. All shipped images are original and documented.
-- If photography is added later, it must be sourced under an explicit licence
-  (e.g. a paid stock licence or a CC0/public-domain source with the licence URL
-  recorded) and entered in §1 with the same fields.
+- None. All shipped images are licensed or original and documented.

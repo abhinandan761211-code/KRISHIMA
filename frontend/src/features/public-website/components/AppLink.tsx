@@ -18,11 +18,11 @@ type Size = "sm" | "md" | "lg";
  */
 const BASE =
   "inline-flex items-center justify-center gap-2 font-medium rounded-[var(--kr-radius-md)] " +
-  // Labels must not wrap mid-phrase, but a long label in a narrow viewport must
-  // still be allowed to break rather than overflow the page. `text-balance` plus
-  // a normal white-space keeps buttons safe at 320px; `min-w-0` lets a flex
-  // parent shrink them instead of pushing the row past the viewport.
-  "min-w-0 text-center text-balance " +
+  // A button label must never wrap or be squeezed. `whitespace-nowrap` keeps
+  // "Log in" on one line; without `min-w-0`/`shrink-0` the flex parent was free to
+  // compress the control to 50px, which is what made it break onto two lines.
+  // Long prose links are the exception — the `link` variant re-enables wrapping.
+  "whitespace-nowrap shrink-0 " +
   "transition-colors duration-[var(--kr-motion-fast)] select-none " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--kr-focus-ring)] " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--kr-bg)]";
@@ -36,7 +36,11 @@ const VARIANTS: Record<Variant, string> = {
     "hover:bg-[color:var(--kr-btn-secondary-bg-hover)]",
   ghost:
     "bg-transparent text-[color:var(--kr-btn-ghost-fg)] hover:bg-[color:var(--kr-btn-ghost-bg-hover)]",
-  link: "bg-transparent text-[color:var(--kr-primary-text)] underline-offset-4 hover:underline px-0",
+  // Prose links sit inside sentences and may wrap; they are also allowed to shrink
+  // so a long label can never force the page wider than the viewport (320px).
+  link:
+    "bg-transparent text-[color:var(--kr-primary-text)] underline-offset-4 hover:underline px-0 " +
+    "whitespace-normal shrink min-w-0 text-start",
   /**
    * No colour and no type scale — for contexts that supply their own (e.g. the
    * announcement bar, which is white-on-green). Using `link` there produced two
