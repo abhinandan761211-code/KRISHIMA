@@ -1,0 +1,47 @@
+/* KRISHIMA Admin stylesheet — shared tokens from @krishima/ui (single source). */
+@import "@krishima/ui/styles/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--kr-bg);
+    color: var(--kr-fg-body);
+    font-family: var(--kr-font-sans);
+    font-size: var(--kr-text-body);
+    line-height: var(--kr-leading-normal);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: var(--kr-focus-width) solid var(--kr-focus-ring);
+    outline-offset: var(--kr-focus-offset);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

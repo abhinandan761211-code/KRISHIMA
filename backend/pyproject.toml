@@ -1,0 +1,51 @@
+[project]
+name = "krishima-backend"
+version = "0.1.0"
+description = "KRISHIMA API — FastAPI modular monolith (Phase 1 foundation)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.141.1",
+    "uvicorn[standard]==0.40.0",
+    "pydantic==2.14.0",
+    "pydantic-settings==2.14.2",
+    "sqlalchemy==2.0.51",
+    "alembic==1.20.1",
+    "psycopg[binary]==3.3.6",
+    "pyjwt[crypto]==2.13.0",
+    "httpx==0.28.1",
+    "python-dotenv==1.1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.0.3",
+    "pytest-asyncio==1.3.0",
+    "ruff==0.14.6",
+    "mypy==1.18.2",
+]
+
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["app"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "C4", "SIM"]
+ignore = ["S101"]  # asserts allowed in tests
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

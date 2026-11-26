@@ -1,0 +1,22 @@
+# KRISHIMA local development orchestration (Phase 1 foundation).
+# Database: development only. NEVER point this at production credentials.
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - backend/.env
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # Frontend and admin are served by Vite in development:
+  #   cd frontend && npm install && npm run dev     (port 5173)
+  #   cd admin   && npm install && npm run dev      (port 5174)

@@ -1,0 +1,59 @@
+# --- Environment & secrets ---
+# Real env files at ANY depth are ignored; only *.env.example templates are tracked.
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.env.local
+*.env.development
+*.env.staging
+*.env.production
+!*.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
+# --- Node / JS ---
+node_modules/
+dist/
+build/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+.vite/
+playwright-report/
+test-results/
+package-lock.json
+# Lockfiles to be replaced by a pnpm lock when the workspace is adopted (Phase 1).
+.pnpm-store/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.egg-info/
+
+# --- Editors / OS ---
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+*.swp
+
+# --- Supabase CLI / local infra ---
+.supabase/
+# The CLI scratch dir (project ref/versions) — never contains secrets but is local.
+supabase/.temp/
+docker/volumes/
+*.db
+*.sqlite

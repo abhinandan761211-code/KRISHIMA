@@ -1,0 +1,518 @@
+/* ==========================================================================
+   KRISHIMA Design Tokens
+   Single source of truth for all visual values. Consumed by frontend + admin.
+   Three levels:
+     1. Primitive  — raw palette values (never used directly by components)
+     2. Semantic   — meaning-based roles (what components actually consume)
+     3. Component  — per-component defaults (button, input, nav, table…)
+   Light is the default. Dark overrides semantic/component tokens only.
+   Contrast of every semantic pair is verified in docs/design-system/COLOR_SYSTEM.md.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. PRIMITIVES — raw palette. Do not reference these in components.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand */
+  --kr-color-green-700: #15803d;
+  /* KRISHI logo + primary */
+  --kr-color-green-800: #166534;
+  /* secondary / hover */
+  --kr-color-green-900: #14532d;
+  /* active / footer */
+  --kr-color-black: #000000;
+  /* MA logo, light mode */
+  --kr-color-white: #ffffff;
+  --kr-color-gold: #d5a13a;
+  /* decorative accent only */
+
+  /* Neutral ramp */
+  --kr-color-neutral-50: #f7faf5;
+  --kr-color-neutral-100: #f3f4f6;
+  --kr-color-neutral-200: #e8f3e8;
+  --kr-color-neutral-300: #e5e7eb;
+  --kr-color-neutral-400: #dce5d9;
+  --kr-color-neutral-500: #768478;
+  --kr-color-neutral-600: #6b7280;
+  --kr-color-neutral-700: #4b5563;
+  --kr-color-neutral-800: #374151;
+  --kr-color-neutral-900: #171717;
+
+  /* Semantic hues (light values) */
+  --kr-color-red-700: #b91c1c;
+  --kr-color-red-100: #fee2e2;
+  --kr-color-amber-800: #92400e;
+  --kr-color-amber-100: #fef3c7;
+  --kr-color-blue-700: #1d4ed8;
+  --kr-color-blue-100: #dbeafe;
+  --kr-color-green-100: #dcfce7;
+
+  /* Dark neutral ramp */
+  --kr-color-dark-900: #121714;
+  --kr-color-dark-800: #1e2721;
+  --kr-color-dark-700: #253d2d;
+  --kr-color-dark-600: #415447;
+  --kr-color-dark-500: #829487;
+  --kr-color-dark-300: #b5c5bb;
+  --kr-color-dark-200: #d1d5db;
+  --kr-color-dark-100: #f3f4f6;
+  --kr-color-dark-400: #a3b5a8;
+  --kr-color-green-300: #86efac;
+  --kr-color-red-300: #fca5a5;
+  --kr-color-amber-300: #fcd34d;
+  --kr-color-blue-300: #93c5fd;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+:root {
+  --kr-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --kr-font-hindi: "Noto Sans Devanagari", "Inter", system-ui, sans-serif;
+  --kr-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --kr-text-display: 2.25rem;
+  /* 36px */
+  --kr-text-h1: 1.875rem;
+  /* 30px */
+  --kr-text-h2: 1.5rem;
+  /* 24px */
+  --kr-text-h3: 1.25rem;
+  /* 20px */
+  --kr-text-h4: 1.125rem;
+  /* 18px */
+  --kr-text-h5: 1rem;
+  /* 16px */
+  --kr-text-h6: 0.875rem;
+  /* 14px */
+  --kr-text-body: 1rem;
+  /* 16px farmer-facing minimum */
+  --kr-text-sm: 0.875rem;
+  /* 14px */
+  --kr-text-caption: 0.75rem;
+  /* 12px */
+  --kr-text-label: 0.875rem;
+
+  --kr-leading-tight: 1.25;
+  --kr-leading-snug: 1.375;
+  --kr-leading-normal: 1.5;
+  --kr-leading-relaxed: 1.625;
+  /* Devanagari */
+
+  --kr-weight-regular: 400;
+  --kr-weight-medium: 500;
+  --kr-weight-semibold: 600;
+  --kr-weight-bold: 700;
+}
+
+/* --------------------------------------------------------------------------
+   SPACING (4px base), RADIUS, SHADOW, MOTION, LAYOUT
+   -------------------------------------------------------------------------- */
+:root {
+  --kr-space-1: 4px;
+  --kr-space-2: 8px;
+  --kr-space-3: 12px;
+  --kr-space-4: 16px;
+  --kr-space-5: 20px;
+  --kr-space-6: 24px;
+  --kr-space-8: 32px;
+  --kr-space-10: 40px;
+  --kr-space-12: 48px;
+  --kr-space-16: 64px;
+  /* Public site section rhythm (responsive overrides below). */
+  --kr-section-py: 48px;
+  --kr-hero-py: 40px;
+
+  --kr-radius-sm: 4px;
+  --kr-radius-md: 8px;
+  /* inputs + buttons */
+  --kr-radius-card: 12px;
+  --kr-radius-lg: 16px;
+  /* large containers */
+  --kr-radius-full: 9999px;
+
+  --kr-shadow-none: none;
+  --kr-shadow-xs: 0 1px 2px rgb(0 0 0 / 0.05);
+  --kr-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.04);
+  --kr-shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+
+  --kr-motion-fast: 120ms;
+  --kr-motion-base: 200ms;
+  --kr-ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+
+  --kr-container-sm: 640px;
+  --kr-container-md: 768px;
+  --kr-container-lg: 1024px;
+  --kr-container-xl: 1200px;
+  --kr-container-2xl: 1440px;
+  /* Public marketing pages: a comfortable editorial measure. */
+  --kr-container-public: 1200px;
+  --kr-measure: 70ch;
+  --kr-touch-target: 44px;
+
+  --kr-focus-width: 2px;
+  --kr-focus-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. SEMANTIC TOKENS — LIGHT (default)
+   Contrast verified: body 9.5:1, primary 5.0:1, placeholders 4.8:1 (see docs)
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --kr-bg: var(--kr-color-neutral-50);
+  /* #F7FAF5 */
+  --kr-surface: var(--kr-color-white);
+  /* #FFFFFF */
+  --kr-surface-muted: var(--kr-color-neutral-200);
+  /* #E8F3E8 */
+  --kr-surface-secondary: var(--kr-color-neutral-100);
+  /* #F3F4F6 */
+  --kr-surface-raised: var(--kr-color-white);
+  --kr-overlay: rgb(23 23 23 / 0.45);
+
+  /* Foreground */
+  --kr-fg: var(--kr-color-neutral-900);
+  /* #171717 headings */
+  --kr-fg-body: var(--kr-color-neutral-800);
+  /* #374151 */
+  --kr-fg-muted: var(--kr-color-neutral-700);
+  /* #4B5563 */
+  --kr-fg-placeholder: var(--kr-color-neutral-600);
+  /* #6B7280 */
+  --kr-fg-inverse: var(--kr-color-white);
+
+  /* Brand / action */
+  --kr-primary: var(--kr-color-green-700);
+  /* KRISHI wordmark — brand green in light mode (AGENTS §11). The dark theme
+   * overrides this with green-300 so contrast holds on the dark surface. */
+  --kr-logo-krishi: var(--kr-color-green-700);
+  --kr-primary-hover: var(--kr-color-green-800);
+  --kr-primary-active: var(--kr-color-green-900);
+  --kr-primary-fg: var(--kr-color-white);
+  /* Label on the light accent surface; in light mode that surface is green-900,
+   * so white is correct here (same as --kr-primary-fg). */
+  --kr-primary-fg-on-accent: var(--kr-color-white);
+  --kr-primary-subtle: var(--kr-color-green-100);
+  /* Text that sits on --kr-primary-subtle. */
+  --kr-primary-fg-on-subtle: var(--kr-color-green-800);
+  /* Link/text accent on light surfaces.
+   * green-800 (#166534), not green-700: on --kr-surface-muted (#E8F3E8) green-700
+   * measures 4.39:1, below the WCAG AA 4.5:1 floor for normal text. green-800
+   * measures 6.25:1 there and 7.13:1 on white, so accent text stays legible on
+   * every surface it is actually placed on (verified by e2e/accessibility.spec). */
+  --kr-primary-text: var(--kr-color-green-800);
+  --kr-accent: var(--kr-color-gold);
+  /* decorative only — never text on light */
+
+  /* Secondary action */
+  --kr-secondary: var(--kr-color-neutral-200);
+  /* #E8F3E8 */
+  --kr-secondary-hover: var(--kr-color-green-100);
+  --kr-secondary-fg: var(--kr-color-green-800);
+  /* #166534 */
+
+  /* Borders */
+  --kr-border: var(--kr-color-neutral-400);
+  /* #DCE5D9 decorative */
+  --kr-border-strong: var(--kr-color-neutral-500);
+  /* #768478 input boundary */
+  --kr-border-subtle: var(--kr-color-neutral-300);
+
+  /* Focus */
+  --kr-focus-ring: var(--kr-color-green-800);
+  /* #166534 */
+
+  /* Disabled */
+  --kr-disabled-bg: var(--kr-color-neutral-300);
+  /* #E5E7EB */
+  --kr-disabled-fg: var(--kr-color-neutral-700);
+  /* #4B5563 */
+  --kr-disabled-border: var(--kr-color-neutral-300);
+
+  /* Semantic */
+  --kr-success: var(--kr-color-green-800);
+  /* #166534 */
+  --kr-success-bg: var(--kr-color-green-100);
+  --kr-error: var(--kr-color-red-700);
+  /* #B91C1C */
+  --kr-error-bg: var(--kr-color-red-100);
+  --kr-warning: var(--kr-color-amber-800);
+  /* #92400E */
+  --kr-warning-bg: var(--kr-color-amber-100);
+  --kr-info: var(--kr-color-blue-700);
+  /* #1D4ED8 */
+  --kr-info-bg: var(--kr-color-blue-100);
+
+  /* Footer */
+  --kr-footer-bg: var(--kr-color-green-900);
+  /* #14532D */
+  --kr-footer-fg: var(--kr-color-white);
+  --kr-footer-muted: rgb(255 255 255 / 0.78);
+  --kr-footer-border: rgb(255 255 255 / 0.16);
+  --kr-footer-link: var(--kr-color-white);
+  --kr-footer-link-hover: var(--kr-color-green-300);
+
+  /* Logo "MA" colour — the only wordmark value that changes by theme. */
+  --kr-logo-ma: var(--kr-color-black);
+
+  /* Selection */
+  --kr-selected-bg: var(--kr-color-green-100);
+  --kr-selected-fg: var(--kr-color-green-800);
+
+  /* Data display */
+  --kr-table-header-bg: var(--kr-color-neutral-100);
+  --kr-table-row-hover: var(--kr-color-neutral-50);
+  --kr-chart-1: var(--kr-color-green-700);
+  --kr-chart-2: var(--kr-color-blue-700);
+  --kr-chart-3: var(--kr-color-amber-800);
+  --kr-chart-4: #0e7490;
+  --kr-chart-5: #7e22ce;
+}
+
+/* --------------------------------------------------------------------------
+   2b. SEMANTIC TOKENS — DARK
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --kr-bg: var(--kr-color-dark-900);
+  /* #121714 */
+  --kr-surface: var(--kr-color-dark-800);
+  /* #1E2721 */
+  --kr-surface-muted: var(--kr-color-dark-700);
+  /* #253D2D */
+  --kr-surface-secondary: var(--kr-color-dark-700);
+  --kr-surface-raised: var(--kr-color-dark-700);
+  --kr-overlay: rgb(0 0 0 / 0.6);
+
+  --kr-fg: var(--kr-color-dark-100);
+  /* #F3F4F6 */
+  --kr-fg-body: var(--kr-color-dark-200);
+  /* #D1D5DB */
+  --kr-fg-muted: var(--kr-color-dark-300);
+  /* #B5C5BB */
+  --kr-fg-placeholder: var(--kr-color-dark-400);
+  /* #A3B5A8 */
+  --kr-fg-inverse: var(--kr-color-dark-900);
+
+  --kr-primary: var(--kr-color-green-700);
+  /* button stays brand green */
+  --kr-primary-hover: var(--kr-color-green-800);
+  /*
+   * Logo foreground for the dark theme. The KRISHI wordmark is brand green and
+   * must stay green, but the light-theme "brand green" (#15803D) on the dark
+   * surface (#121714) measures 2.85:1 — below the 3:1 minimum for large text and
+   * for the wordmark at small sizes. green-300 (#86EFAC) is the same brand family
+   * lightened for dark mode (10.8:1) and is also what --kr-primary-text uses.
+   * Kept as its own token so the primary BUTTON stays #15803D in both themes.
+   */
+  --kr-logo-krishi: var(--kr-color-green-300);
+  --kr-primary-active: var(--kr-color-green-300);
+  --kr-primary-fg: var(--kr-color-white);
+  /* Foreground for the LIGHT accent surface (`--kr-primary-active`, #86EFAC).
+   * White measures 1.40:1 on it, so this must be dark (green-900 → 6.49:1).
+   * Kept separate from --kr-primary-fg because that same token is the label colour
+   * of the primary BUTTON (green-700 bg), where dark text would be 1.82:1. */
+  --kr-primary-fg-on-accent: var(--kr-color-green-900);
+  --kr-primary-subtle: rgb(134 239 172 / 0.14);
+  --kr-primary-fg-on-subtle: var(--kr-color-green-300);
+  --kr-primary-text: var(--kr-color-green-300);
+  --kr-accent: var(--kr-color-green-300);
+  /* #86EFAC brand accent in dark */
+
+  --kr-secondary: var(--kr-color-dark-700);
+  --kr-secondary-hover: var(--kr-color-dark-600);
+  --kr-secondary-fg: var(--kr-color-green-300);
+
+  --kr-border: var(--kr-color-dark-600);
+  /* #415447 decorative */
+  --kr-border-strong: var(--kr-color-dark-500);
+  /* #829487 input boundary */
+  --kr-border-subtle: var(--kr-color-dark-600);
+
+  --kr-focus-ring: var(--kr-color-green-300);
+  /* #86EFAC */
+
+  --kr-disabled-bg: var(--kr-color-dark-700);
+  --kr-disabled-fg: var(--kr-color-dark-400);
+  --kr-disabled-border: var(--kr-color-dark-600);
+
+  --kr-success: var(--kr-color-green-300);
+  /* #86EFAC */
+  --kr-success-bg: rgb(134 239 172 / 0.15);
+  --kr-error: var(--kr-color-red-300);
+  /* #FCA5A5 */
+  --kr-error-bg: rgb(252 165 165 / 0.15);
+  --kr-warning: var(--kr-color-amber-300);
+  /* #FCD34D */
+  --kr-warning-bg: rgb(252 211 77 / 0.15);
+  --kr-info: var(--kr-color-blue-300);
+  /* #93C5FD */
+  --kr-info-bg: rgb(147 197 253 / 0.15);
+
+  --kr-footer-bg: var(--kr-color-dark-800);
+  --kr-footer-fg: var(--kr-color-dark-100);
+  --kr-footer-muted: var(--kr-color-dark-300);
+  --kr-footer-border: var(--kr-color-dark-600);
+  --kr-footer-link: var(--kr-color-dark-100);
+  --kr-footer-link-hover: var(--kr-color-green-300);
+
+  --kr-logo-ma: var(--kr-color-white);
+
+  --kr-selected-bg: rgb(134 239 172 / 0.16);
+  --kr-selected-fg: var(--kr-color-green-300);
+
+  --kr-table-header-bg: var(--kr-color-dark-700);
+  --kr-table-row-hover: var(--kr-color-dark-700);
+  --kr-chart-1: #4ade80;
+  --kr-chart-2: #93c5fd;
+  --kr-chart-3: #fcd34d;
+  --kr-chart-4: #5eead4;
+  --kr-chart-5: #d8b4fe;
+
+  /* Shadows are less visible on dark; borders carry elevation instead. */
+  --kr-shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --kr-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.5);
+  --kr-shadow-md: 0 4px 12px rgb(0 0 0 / 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   PUBLIC SITE — editorial section rhythm. Larger vertical breathing room on
+   desktop; mobile stays compact for farmers on data-limited phones.
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  :root {
+    --kr-section-py: 72px;
+    --kr-hero-py: 64px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2c. PUBLIC SITE SURFACES
+   Editorial bands and the illustration layer. Only these two extras were added
+   for the public website; everything else reuses the semantic tokens above.
+   Contrast of every pair is verified by scripts/check_design_contrast.py.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  /* Alternate editorial band (sits between --kr-bg and --kr-surface). */
+  --kr-surface-public-alt: var(--kr-color-neutral-200);
+  /* #E8F3E8 */
+  /* SVG illustration layer: soft green shapes on top of a surface. */
+  --kr-illustration-fill: rgb(21 128 61 / 0.10);
+  --kr-illustration-stroke: rgb(21 128 61 / 0.30);
+  --kr-illustration-accent: rgb(213 161 58 / 0.22);
+  /* Footer sits on brand green in light mode — text must stay white. */
+  --kr-footer-input-bg: rgb(255 255 255 / 0.10);
+  --kr-footer-input-border: rgb(255 255 255 / 0.35);
+}
+
+[data-theme="dark"] {
+  --kr-surface-public-alt: var(--kr-surface);
+  --kr-illustration-fill: rgb(134 239 172 / 0.10);
+  --kr-illustration-stroke: rgb(134 239 172 / 0.26);
+  --kr-illustration-accent: rgb(252 211 77 / 0.16);
+  --kr-footer-input-bg: rgb(243 244 246 / 0.06);
+  --kr-footer-input-border: var(--kr-color-dark-600);
+}
+
+/* --------------------------------------------------------------------------
+   3. COMPONENT TOKENS
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"],
+[data-theme="dark"] {
+  --kr-btn-primary-bg: var(--kr-primary);
+  --kr-btn-primary-bg-hover: var(--kr-primary-hover);
+  --kr-btn-primary-bg-active: var(--kr-primary-active);
+  --kr-btn-primary-fg: var(--kr-primary-fg);
+
+  --kr-btn-secondary-bg: var(--kr-secondary);
+  --kr-btn-secondary-bg-hover: var(--kr-secondary-hover);
+  --kr-btn-secondary-fg: var(--kr-secondary-fg);
+  --kr-btn-secondary-border: transparent;
+
+  --kr-btn-ghost-bg: transparent;
+  --kr-btn-ghost-bg-hover: var(--kr-surface-muted);
+  --kr-btn-ghost-fg: var(--kr-fg-body);
+
+  --kr-btn-danger-bg: var(--kr-error);
+  --kr-btn-danger-fg: #ffffff;
+  --kr-btn-danger-bg-hover: #991b1b;
+  --kr-btn-danger-solid: #b91c1c; /* solid fill for buttons (text stays white) */
+  --kr-btn-danger-solid-hover: #991b1b;
+  --kr-btn-danger-solid-fg: #ffffff;
+
+  --kr-btn-disabled-bg: var(--kr-disabled-bg);
+  --kr-btn-disabled-fg: var(--kr-disabled-fg);
+
+  --kr-input-bg: var(--kr-surface);
+  --kr-input-border: var(--kr-border-strong);
+  --kr-input-fg: var(--kr-fg-body);
+  --kr-input-placeholder: var(--kr-fg-placeholder);
+  --kr-input-border-focus: var(--kr-focus-ring);
+  --kr-input-border-error: var(--kr-error);
+  --kr-input-bg-disabled: var(--kr-disabled-bg);
+
+  --kr-card-bg: var(--kr-surface);
+  --kr-card-border: var(--kr-border);
+  --kr-card-radius: var(--kr-radius-card);
+  --kr-card-padding: var(--kr-space-6);
+
+  --kr-nav-bg: var(--kr-surface);
+  --kr-nav-border: var(--kr-border);
+  --kr-nav-item-fg: var(--kr-fg-muted);
+  --kr-nav-item-hover-bg: var(--kr-surface-muted);
+  --kr-nav-item-selected-bg: var(--kr-selected-bg);
+  --kr-nav-item-selected-fg: var(--kr-selected-fg);
+  --kr-nav-item-selected-border: var(--kr-primary);
+
+  --kr-badge-bg: var(--kr-surface-secondary);
+  --kr-badge-fg: var(--kr-fg-muted);
+
+  --kr-tooltip-bg: var(--kr-fg);
+  --kr-tooltip-fg: var(--kr-bg);
+
+  --kr-skeleton-bg: var(--kr-surface-secondary);
+  --kr-skeleton-shine: rgb(255 255 255 / 0.45);
+}
+
+[data-theme="dark"] {
+  --kr-btn-danger-bg-hover: #dc2626;
+  --kr-skeleton-shine: rgb(255 255 255 / 0.07);
+}
+
+/* --------------------------------------------------------------------------
+   MODULE ACCENTS — icons/labels/highlights only, never primary buttons/nav.
+   Light values pass ≥4.5:1 on white; dark values pass ≥4.5:1 on #121714.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  --kr-mod-farmer: #15803d;
+  --kr-mod-buyer: #1d4ed8;
+  --kr-mod-retailer: #b45309;
+  --kr-mod-worker: #0e7490;
+  --kr-mod-equipment: #c2410c;
+  --kr-mod-transporter: #4338ca;
+  --kr-mod-warehouse: #475569;
+  --kr-mod-creator: #7e22ce;
+  --kr-mod-community: #0f766e;
+  --kr-mod-admin: #334155;
+}
+
+[data-theme="dark"] {
+  --kr-mod-farmer: #4ade80;
+  --kr-mod-buyer: #93c5fd;
+  --kr-mod-retailer: #fcd34d;
+  --kr-mod-worker: #67e8f9;
+  --kr-mod-equipment: #fb923c;
+  --kr-mod-transporter: #a5b4fc;
+  --kr-mod-warehouse: #cbd5e1;
+  --kr-mod-creator: #d8b4fe;
+  --kr-mod-community: #5eead4;
+  --kr-mod-admin: #cbd5e1;
+}
