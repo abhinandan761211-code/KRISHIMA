@@ -1,3 +1,7 @@
+/* eslint-disable react-refresh/only-export-components -- this module exports the
+   public route table (a value) alongside the layout component, so the router and
+   tests can import both from one place. Fast refresh does not apply to a route
+   module; see the same pattern in app/router/index.tsx. */
 import type { ReactElement } from "react";
 import { PublicLayout } from "@/features/public-website/layouts/PublicLayout";
 import { LandingPage } from "@/features/public-website/pages/LandingPage";

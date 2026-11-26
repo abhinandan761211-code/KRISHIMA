@@ -21,6 +21,7 @@ export const en: Messages = {
   "nav.home": "Home",
   "nav.about": "About",
   "nav.services": "Services",
+  "nav.solutions": "Categories",
   "nav.howItWorks": "How it works",
   "nav.contact": "Contact",
   "nav.faq": "FAQ",

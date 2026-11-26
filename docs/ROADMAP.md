@@ -1,3 +1,22 @@
+# KRISHIMA — Development Roadmap (v1.0 — SUPERSEDED)
+
+> ⚠️ **This roadmap is superseded by
+> [`docs/roadmap/DEVELOPMENT_ROADMAP.md`](roadmap/DEVELOPMENT_ROADMAP.md) (v2.0).**
+>
+> The v2.0 file is the single authoritative 14-phase sequence and wins wherever the
+> two disagree. This file is **retained unchanged below for historical reference** —
+> it records the original planning and the phase descriptions that validation
+> reports were written against. Do not plan work from it.
+>
+> Key differences: v1.0 used a 9-phase list that mixed delivery boundaries with
+> domain modules and had no explicit Authentication or AI phase. The mapping from
+> these phases to v2.0 is in
+> [DEVELOPMENT_ROADMAP.md §5](roadmap/DEVELOPMENT_ROADMAP.md#5-reconciliation-with-the-previous-roadmap).
+
+---
+
+## Original content (v1.0, unchanged)
+
 # KRISHIMA — Development Roadmap
 
 - **Version:** 1.0 (Phase 0)

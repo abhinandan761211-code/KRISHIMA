@@ -20,7 +20,7 @@ export function ServicesPage() {
     titleKey: "meta.services.title",
     descriptionKey: "meta.services.description",
     path: "/services",
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (

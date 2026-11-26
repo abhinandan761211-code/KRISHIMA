@@ -18,6 +18,11 @@ type Size = "sm" | "md" | "lg";
  */
 const BASE =
   "inline-flex items-center justify-center gap-2 font-medium rounded-[var(--kr-radius-md)] " +
+  // Labels must not wrap mid-phrase, but a long label in a narrow viewport must
+  // still be allowed to break rather than overflow the page. `text-balance` plus
+  // a normal white-space keeps buttons safe at 320px; `min-w-0` lets a flex
+  // parent shrink them instead of pushing the row past the viewport.
+  "min-w-0 text-center text-balance " +
   "transition-colors duration-[var(--kr-motion-fast)] select-none " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--kr-focus-ring)] " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--kr-bg)]";

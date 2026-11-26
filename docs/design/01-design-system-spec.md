@@ -199,8 +199,29 @@ Sizes: `sm, md, lg`. Primary = brand green.
   `onMissingKey` — never rendered as a blank string.
 - `LanguageSwitcher` is a native `<select>` (most reliable on low-cost Android) using `useId()` so
   its label binding stays valid when it is mounted in header, mobile menu and footer together.
-- **Hindi is `partial` and not selectable** until professional translation lands (OPEN-QUESTIONS
-  A-15). Only locales marked `complete` appear in the selector.
+- **Hindi is complete and selectable** (OPEN-QUESTIONS A-15 resolved). The catalogue has full key
+  parity with English, a unit test forbids untranslated values, and a dedicated e2e suite verifies
+  Hindi layout, navigation and axe accessibility at 320–1920px. A native-speaker review before launch
+  is recommended but is not a blocker for offering the language.
+- Only locales marked `complete` appear in the selector; `partial` locales are excluded and refused
+  by `setLocale()`.
+
+## 10.2 Brand wordmark colour (dark theme)
+
+The KRISHI wordmark must always read as **brand green**, never recoloured to a neutral. To keep that
+identity *and* meet contrast, the wordmark uses the semantic token `--kr-logo-krishi`:
+
+| Theme | Value | Contrast on surface |
+|-------|-------|---------------------|
+| Light | `#15803D` (green-700, the brand green) | 4.7:1+ on `--kr-surface` |
+| Dark  | `#86EFAC` (green-300 — the same brand family, lightened) | 10.8:1 on `#121714` |
+
+The original brand green on the dark surface measures **2.85:1**, below the 3:1 minimum for large
+text and for the wordmark at small sizes. Using a lighter tint of the same green preserves the
+identity while making it readable. `--kr-primary` is intentionally **not** reused for this: it also
+backs the primary button, which must stay `#15803D` in both themes.
+
+This is a token-level decision; no component hard-codes a colour for the logo.
 - Details and verification: [`docs/testing/I18N_VALIDATION_REPORT.md`](../testing/I18N_VALIDATION_REPORT.md).
 
 ---

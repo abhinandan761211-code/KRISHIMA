@@ -5,6 +5,50 @@
 
 ---
 
+## Session — 2026-11-26 — Foundation stabilization: 4 blockers RESOLVED
+
+Report: [`docs/testing/FOUNDATION_STABILIZATION_REPORT.md`](docs/testing/FOUNDATION_STABILIZATION_REPORT.md)
+
+| Blocker | Status |
+|---------|--------|
+| **B-1** database/migrations | **RESOLVED** — two real code defects fixed (ConfigParser `%` interpolation; SQLAlchemy 2.0 transaction never committed). `alembic current` → `0001_baseline (head)` |
+| **B-5** version control | **RESOLVED** — git initialized, 225 files, no remote, no push |
+| **B-7** image licensing | **RESOLVED** — 3 unverified stock photos deleted, replaced with original generated SVGs |
+| **A-15** Hindi translation | **RESOLVED** — 498 keys, exact parity, 0 untranslated values, locale enabled, 10 Hindi e2e tests |
+
+### Also delivered
+- **Authoritative roadmap** `docs/roadmap/DEVELOPMENT_ROADMAP.md` (14 phases, old→new mapping); `docs/ROADMAP.md` kept as a superseded historical record.
+- **ADR-0010** — prerender at build time recommended, SSR rejected (Proposed).
+- **`docs/assets/IMAGE_LICENSES.md`**, **`SEO_AND_PRODUCTION_CONFIG.md`**.
+- **ESLint now 0 errors / 0 warnings** — FAQ data moved to `data/faq.ts`; route-table disable documented.
+
+### Bugs found and fixed while testing
+- Nav dropdown labelled "Services" duplicated the `/services` link → relabelled "Categories".
+- Hindi label wrapped to 2 lines, breaking the 1024px navbar fix → `whitespace-nowrap`.
+- My own `shrink-0`/`nowrap` change caused 320px overflow on `/about` → reworked to `min-w-0 text-balance`.
+
+### Verified
+| Check | Result |
+|-------|--------|
+| frontend tsc / eslint | **PASS** / **PASS 0/0** |
+| unit tests | **PASS 29/29** |
+| e2e | **PASS 65/65** (55 EN + 10 HI) |
+| responsive | **PASS** — 156 combos (13 widths × 6 routes × 2 locales), 320–2560px, zero overflow |
+| axe WCAG 2.2 AA | **PASS** — all routes, light + dark + Hindi |
+| production build | **PASS** — 485 kB JS (131 kB gzip); sitemap/robots verified in 3 scenarios |
+| contrast script | **PASS 48/48** |
+| backend pytest | **PASS 10/10** |
+| DB connectivity + migration | **PASS** — `0001_baseline (head)` |
+| admin tsc | **FAIL — pre-existing B-6** |
+
+### New blockers recorded
+- **B-2** runtime uses owner role (RLS bypassed) — needs `app_runtime`.
+- **B-8** baseline creates no business tables (roadmap Phase 1 lists them).
+- **B-9** lockfiles git-ignored, conflicting with AGENTS §8.
+- **B-10** DB password was shared in chat — **rotate it**.
+
+---
+
 ## Session — 2026-11-26 — Public website ("Phase 3" brief) COMPLETE + VALIDATED
 
 Reports: [`docs/testing/PUBLIC_WEBSITE_VALIDATION_REPORT.md`](docs/testing/PUBLIC_WEBSITE_VALIDATION_REPORT.md) ·
@@ -151,7 +195,7 @@ No secret, `.env`, or credential file was read, printed, or modified.
 | Phase | Status | Notes |
 |-------|--------|-------|
 | Phase 0 — Documentation | **Complete** | ADRs 0001–0009, PRD, architecture, standards |
-| Phase 1 — Foundation & Tooling | **~90%, not signed off** | Code + tests pass; **blocked on B-1** (DB credential), B-2 (`app_runtime` role), B-5 (`git init`) |
+| Phase 1 — Core platform foundation | **~90%, not signed off** | DB connects and migrations apply (B-1 resolved). Remaining: baseline business tables + RLS (B-8), `app_runtime` role (B-2) |
 | Phase 2 — Design System | **Complete & validated** | Report: `docs/testing/DESIGN_SYSTEM_VALIDATION_REPORT.md`; 0 axe violations, contrast PASS |
 | Phase 2+ — i18n & extra primitives | **Wired, tested, documented** | Report: `docs/testing/I18N_VALIDATION_REPORT.md`. `hi` is `partial` pending translation (A-15) |
 | Public website (marketing site, outside phased business scope) | **Complete & validated** | 18 routes; axe WCAG 2.2 AA clean on all routes in both themes; 50 e2e tests; zero overflow 320→1920. Blockers: image licensing (B-7), Hindi translation |
@@ -168,7 +212,7 @@ corrected; no code changed.
 - **B-1** DB password rejected → blocks all DB/migration/RLS work.
 - **B-2** Least-privilege `app_runtime` role not created.
 - **B-3** Google OAuth not exercised end-to-end (interactive).
-- **B-5** Repository is not a git repo — **no rollback safety; should be fixed first.**
+- **B-5** Repository is not a git repo — **no rollback safety; should be fixed first.** → **RESOLVED** (git initialized, no remote)
 - **B-6** Two physical `@types/react@19.0.2` copies → `admin` typecheck fails inside `packages/ui`. Admin `src/` is clean. Dependency-hygiene fix, not a code bug.
 - **B-7** Public-website images are used with no documented source or licence. Launch blocker.
 

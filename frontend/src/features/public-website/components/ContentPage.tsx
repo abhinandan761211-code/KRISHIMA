@@ -27,7 +27,7 @@ export function ContentPage({
     titleKey: meta.titleKey,
     descriptionKey: meta.descriptionKey,
     path: meta.path,
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (

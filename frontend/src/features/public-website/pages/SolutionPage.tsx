@@ -26,7 +26,7 @@ export function SolutionPage({ roleId }: { roleId: RoleId }) {
     titleKey: `${base}.seo.title`,
     descriptionKey: `${base}.seo.description`,
     path: role.href,
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (

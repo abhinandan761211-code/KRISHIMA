@@ -34,7 +34,7 @@ export function LandingPage() {
     titleKey: "meta.home.title",
     descriptionKey: "meta.home.description",
     path: "/",
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (

@@ -12,7 +12,7 @@ export function FaqPage() {
     titleKey: "meta.faq.title",
     descriptionKey: "meta.faq.description",
     path: "/faq",
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (
@@ -45,7 +45,7 @@ export function HelpPage() {
     titleKey: "meta.help.title",
     descriptionKey: "meta.help.description",
     path: "/help",
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (

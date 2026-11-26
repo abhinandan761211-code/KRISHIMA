@@ -33,7 +33,7 @@ test.describe("public navigation", () => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/");
 
-    const trigger = page.getByRole("button", { name: "Services" }).first();
+    const trigger = page.getByRole("button", { name: "Categories" }).first();
     await trigger.focus();
     await page.keyboard.press("Enter");
 

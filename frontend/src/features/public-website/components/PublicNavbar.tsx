@@ -69,14 +69,14 @@ function SolutionsMenu() {
         aria-controls={menuId}
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "inline-flex min-h-[var(--kr-touch-target)] items-center gap-1 rounded-[var(--kr-radius-md)] px-3 text-[15px] font-medium",
+          "inline-flex min-h-[var(--kr-touch-target)] items-center gap-1 whitespace-nowrap rounded-[var(--kr-radius-md)] px-3 text-[15px] font-medium",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--kr-focus-ring)] focus-visible:ring-offset-2",
           pathname.startsWith("/solutions")
             ? "bg-[color:var(--kr-nav-item-selected-bg)] text-[color:var(--kr-nav-item-selected-fg)]"
             : "text-[color:var(--kr-nav-item-fg)] hover:bg-[color:var(--kr-nav-item-hover-bg)] hover:text-[color:var(--kr-fg)]",
         )}
       >
-        {t("nav.services")}
+        {t("nav.solutions")}
         <Icon name="chevronDown" size={16} className={cn(open && "rotate-180 transition-transform")} />
       </button>
 
@@ -163,7 +163,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
         </ul>
 
         <p className="mt-4 px-3 text-[length:var(--kr-text-caption)] font-semibold uppercase tracking-wide text-[color:var(--kr-fg-muted)]">
-          {t("nav.services")}
+          {t("nav.solutions")}
         </p>
         <ul className="mt-1 flex flex-col">
           {SOLUTION_NAV.map((item) => (
@@ -265,7 +265,7 @@ export function PublicNavbar() {
             to={ACCOUNT_ACTIONS.login.href}
             variant="ghost"
             size="sm"
-            className="hidden lg:inline-flex"
+            className="hidden whitespace-nowrap lg:inline-flex"
           >
             {t(ACCOUNT_ACTIONS.login.labelKey)}
           </AppLink>
@@ -273,7 +273,7 @@ export function PublicNavbar() {
             to={ACCOUNT_ACTIONS.register.href}
             variant="primary"
             size="sm"
-            className="hidden lg:inline-flex"
+            className="hidden whitespace-nowrap lg:inline-flex"
           >
             {t(ACCOUNT_ACTIONS.register.labelKey)}
           </AppLink>

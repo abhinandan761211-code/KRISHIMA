@@ -19,7 +19,7 @@ export function HowItWorksPage() {
     titleKey: "meta.howItWorks.title",
     descriptionKey: "meta.howItWorks.description",
     path: "/how-it-works",
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   return (

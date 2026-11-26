@@ -1,1142 +1,656 @@
 import type { Messages } from "@krishima/ui";
 
 /**
- * Hindi (hi-IN) catalogue for the public website — STRUCTURAL MIRROR.
+ * Hindi (hi-IN) catalogue for the public website.
  *
- * ⚠️ PENDING PROFESSIONAL TRANSLATION (OPEN-QUESTIONS A-15).
- * Every key below exists so the app never renders the raw key id, but the values
- * are NOT translations yet: they are the English strings, each block marked with
- * the `// TODO(hi)` tag. This file is therefore registered with `status: "partial"`
- * in LOCALE_REGISTRY, which makes Hindi **not selectable** by any user. Hindi is
- * offered only once every `// TODO(hi)` tag is removed and the copy has been
- * reviewed by a professional translator. A unit test enforces that the key set
- * stays exactly equal to en.ts, so the two files cannot drift.
- *
- * Do not present this content as Hindi anywhere. See en.ts for the copy rules
- * (no unverified statistics, no claimed government partnership/certification).
+ * Rules for this file:
+ *  - Flat, dot-separated keys; the key set must match en.ts EXACTLY (a unit test
+ *    enforces this, so a missing or extra key fails the build).
+ *  - Natural, simple Hindi as spoken by farmers and small agricultural businesses —
+ *    not formal Sanskritised Hindi. Common English words that are genuinely how
+ *    people speak (KYC, QR, GPS) are transliterated rather than invented.
+ *  - No unverified statistics, no invented phone numbers or addresses, and no claim
+ *    of government partnership or certification anywhere.
+ *  - Numbers, units and placeholders ({count}) are preserved; the runtime
+ *    interpolates them.
+ *  - Do not copy English into a Hindi value as a substitute for translating it.
  */
 export const hi: Messages = {
   /* ---------------------------------------------------------------- common */
-  // TODO(hi): translate → common.language
-  "common.language": "Language",
-  // TODO(hi): translate → common.comingSoon
-  "common.comingSoon": "coming soon",
-  // TODO(hi): translate → common.questionsContact
-  "common.questionsContact": "Questions about this page? Contact us.",
+  "common.language": "भाषा",
+  "common.comingSoon": "जल्द उपलब्ध",
+  "common.questionsContact": "इस पेज के बारे में कोई सवाल है? हमसे संपर्क करें।",
 
   /* ------------------------------------------------------------------- nav */
-  // TODO(hi): translate → nav.home
-  "nav.home": "Home",
-  // TODO(hi): translate → nav.about
-  "nav.about": "About",
-  // TODO(hi): translate → nav.services
-  "nav.services": "Services",
-  // TODO(hi): translate → nav.howItWorks
-  "nav.howItWorks": "How it works",
-  // TODO(hi): translate → nav.contact
-  "nav.contact": "Contact",
-  // TODO(hi): translate → nav.faq
-  "nav.faq": "FAQ",
-  // TODO(hi): translate → nav.help
-  "nav.help": "Help",
-  // TODO(hi): translate → nav.privacy
-  "nav.privacy": "Privacy policy",
-  // TODO(hi): translate → nav.terms
-  "nav.terms": "Terms of use",
-  // TODO(hi): translate → nav.homeLabel
-  "nav.homeLabel": "KRISHIMA home",
-  // TODO(hi): translate → nav.primaryLabel
-  "nav.primaryLabel": "Primary",
-  // TODO(hi): translate → nav.openMenu
-  "nav.openMenu": "Open menu",
-  // TODO(hi): translate → nav.closeMenu
-  "nav.closeMenu": "Close menu",
-  // TODO(hi): translate → nav.skipToContent
-  "nav.skipToContent": "Skip to main content",
+  "nav.home": "होम",
+  "nav.about": "हमारे बारे में",
+  "nav.services": "सेवाएँ",
+  "nav.solutions": "खाता श्रेणियाँ",
+  "nav.howItWorks": "यह कैसे काम करता है",
+  "nav.contact": "संपर्क",
+  "nav.faq": "सामान्य प्रश्न",
+  "nav.help": "मदद",
+  "nav.privacy": "गोपनीयता नीति",
+  "nav.terms": "उपयोग की शर्तें",
+  "nav.homeLabel": "KRISHIMA होम",
+  "nav.primaryLabel": "मुख्य नेविगेशन",
+  "nav.openMenu": "मेन्यू खोलें",
+  "nav.closeMenu": "मेन्यू बंद करें",
+  "nav.skipToContent": "सीधे मुख्य सामग्री पर जाएँ",
 
   /* ------------------------------------------------------------------- cta */
-  // TODO(hi): translate → cta.login
-  "cta.login": "Log in",
-  // TODO(hi): translate → cta.getStarted
-  "cta.getStarted": "Get started",
-  // TODO(hi): translate → cta.exploreServices
-  "cta.exploreServices": "Explore services",
+  "cta.login": "लॉग इन",
+  "cta.getStarted": "शुरू करें",
+  "cta.exploreServices": "सेवाएँ देखें",
 
   /* ---------------------------------------------------------- announcement */
-  // TODO(hi): translate → announcement.launch
-  "announcement.launch": "KRISHIMA is in active development — here is what we are building.",
-  // TODO(hi): translate → announcement.readMore
-  "announcement.readMore": "Read more",
-  // TODO(hi): translate → announcement.dismiss
-  "announcement.dismiss": "Dismiss announcement",
+  "announcement.launch": "KRISHIMA अभी बन रहा है — यहाँ देखिए हम क्या तैयार कर रहे हैं।",
+  "announcement.readMore": "और पढ़ें",
+  "announcement.dismiss": "सूचना हटाएँ",
 
   /* ------------------------------------------------------------------ hero */
-  // TODO(hi): translate → hero.eyebrow
-  "hero.eyebrow": "An agriculture platform for India",
-  // TODO(hi): translate → hero.title
-  "hero.title": "Grow smarter. Trade better. Build a stronger future.",
-  // TODO(hi): translate → hero.description
+  "hero.eyebrow": "भारत के लिए एक कृषि प्लेटफ़ॉर्म",
+  "hero.title": "समझदारी से खेती। बेहतर सौदा। मज़बूत भविष्य।",
   "hero.description":
-    "One connected digital platform for farmers, agricultural businesses, workers, and essential farming services.",
-  // TODO(hi): translate → hero.supportNote
-  "hero.supportNote": "Account creation is being built. You can explore everything the platform will offer today.",
-  // TODO(hi): translate → hero.imageAlt
-  "hero.imageAlt": "A wheat field at sunrise under a clear sky",
-  // TODO(hi): translate → hero.rolesCaption
-  "hero.rolesCaption": "Built for",
-  // TODO(hi): translate → hero.rolesSummary
-  "hero.rolesSummary": "Eight kinds of agricultural work",
+    "किसानों, कृषि व्यवसायों, मज़दूरों और खेती के ज़रूरी कामों के लिए एक जुड़ा हुआ डिजिटल प्लेटफ़ॉर्म।",
+  "hero.supportNote": "खाता बनाने की सुविधा बन रही है। अभी आप देख सकते हैं कि प्लेटफ़ॉर्म आगे क्या देगा।",
+  "hero.imageAlt": "सुबह के समय साफ़ आसमान के नीचे गेहूँ का खेत",
+  "hero.rolesCaption": "किसके लिए",
+  "hero.rolesSummary": "खेती के आठ तरह के काम",
 
   /* -------------------------------------------------------------- platform */
-  // TODO(hi): translate → platform.eyebrow
-  "platform.eyebrow": "What KRISHIMA is",
-  // TODO(hi): translate → platform.title
-  "platform.title": "One platform for the whole agricultural value chain",
-  // TODO(hi): translate → platform.description
+  "platform.eyebrow": "KRISHIMA क्या है",
+  "platform.title": "पूरी कृषि मूल्य श्रृंखला के लिए एक प्लेटफ़ॉर्म",
   "platform.description":
-    "KRISHIMA connects the people and services that agriculture depends on — from the farm to the buyer, and everything in between — in one trusted, multilingual place.",
-  // TODO(hi): translate → platform.points.identity.title
-  "platform.points.identity.title": "One identity, many roles",
-  // TODO(hi): translate → platform.points.identity.description
+    "KRISHIMA उन सभी लोगों और सेवाओं को जोड़ती है जिन पर खेती टिकी है — खेत से लेकर खरीदार तक, और बीच की हर ज़रूरत — एक भरोसेमंद, बहुभाषी जगह पर।",
+  "platform.points.identity.title": "एक पहचान, कई भूमिकाएँ",
   "platform.points.identity.description":
-    "A person can be a farmer, a buyer and an equipment owner at the same time. Each role keeps its own data, so nothing is mixed between them.",
-  // TODO(hi): translate → platform.points.workspaces.title
-  "platform.points.workspaces.title": "Independent workspaces",
-  // TODO(hi): translate → platform.points.workspaces.description
+    "एक व्यक्ति एक ही समय में किसान, खरीदार और मशीन का मालिक हो सकता है। हर भूमिका का अपना डेटा अलग रहता है, ताकि आपस में कुछ न मिले।",
+  "platform.points.workspaces.title": "अलग-अलग वर्कस्पेस",
   "platform.points.workspaces.description":
-    "A personal account and a larger business account can live side by side. Work done in one workspace never leaks into another.",
-  // TODO(hi): translate → platform.points.trust.title
-  "platform.points.trust.title": "Access by permission",
-  // TODO(hi): translate → platform.points.trust.description
+    "निजी खाता और बिज़नेस खाता साथ-साथ चल सकते हैं। एक वर्कस्पेस का काम दूसरे में कभी नहीं मिलता।",
+  "platform.points.trust.title": "अनुमति से पहुँच",
   "platform.points.trust.description":
-    "Access is denied by default and granted explicitly, checked both in the application and at the database. Sensitive actions are recorded.",
+    "पहुँच शुरू में बंद रहती है और साफ़-साफ़ दी जाती है। जाँच ऐप में भी होती है और डेटाबेस में भी। ज़रूरी कामों का रिकॉर्ड रखा जाता है।",
 
   /* ----------------------------------------------------------------- roles */
-  // TODO(hi): translate → roles.eyebrow
-  "roles.eyebrow": "Who it is for",
-  // TODO(hi): translate → roles.title
-  "roles.title": "Eight kinds of work, one platform",
-  // TODO(hi): translate → roles.description
+  "roles.eyebrow": "किसके लिए है",
+  "roles.title": "आठ तरह के काम, एक प्लेटफ़ॉर्म",
   "roles.description":
-    "Every participant in agriculture has different needs. Each category below has its own workspace, permissions and tools.",
-  // TODO(hi): translate → roles.footnote
+    "खेती में हर जुड़े व्यक्ति की ज़रूरत अलग होती है। नीचे हर श्रेणी का अपना वर्कस्पेस, अनुमतियाँ और औज़ार हैं।",
   "roles.footnote":
-    "These are roles a person can hold, not separate accounts. One login can carry several roles, each with its own workspace.",
-  // TODO(hi): translate → roles.learnMore
-  "roles.learnMore": "Learn more",
+    "ये अलग-अलग खाते नहीं, बल्कि भूमिकाएँ हैं जो एक व्यक्ति रख सकता है। एक ही लॉगिन में कई भूमिकाएँ हो सकती हैं, हर एक का अपना वर्कस्पेस।",
+  "roles.learnMore": "और जानें",
 
-  // TODO(hi): translate → roles.farmer.name
-  "roles.farmer.name": "Farmer",
-  // TODO(hi): translate → roles.farmer.short
-  "roles.farmer.short": "Keep farm records, follow crops and find the services a season needs.",
-  // TODO(hi): translate → roles.farmer.headline
-  "roles.farmer.headline": "Run your farm with clearer records",
-  // TODO(hi): translate → roles.farmer.long
+  "roles.farmer.name": "किसान",
+  "roles.farmer.short": "खेत का हिसाब रखें, फ़सल पर नज़र रखें और मौसम की ज़रूरी सेवाएँ खोजें।",
+  "roles.farmer.headline": "साफ़ हिसाब के साथ अपनी खेती चलाएँ",
   "roles.farmer.long":
-    "KRISHIMA is being built so a farmer can keep plot and crop records in one place, follow the season, and find labour, equipment, transport and storage when they are needed — without losing track of what happened last year.",
-  // TODO(hi): translate → roles.farmer.needs
-  "roles.farmer.needs": "Farm and plot records, crop timelines, weather, market information and service discovery.",
-  // TODO(hi): translate → roles.farmer.requirements
-  "roles.farmer.requirements": "An account is all that is needed to keep records. Selling produce will require verification when that service launches.",
-  // TODO(hi): translate → roles.farmer.highlights.h1.title
-  "roles.farmer.highlights.h1.title": "Farm records",
-  // TODO(hi): translate → roles.farmer.highlights.h1.body
-  "roles.farmer.highlights.h1.body": "Plots, crops and seasons in one place instead of scattered notes.",
-  // TODO(hi): translate → roles.farmer.highlights.h2.title
-  "roles.farmer.highlights.h2.title": "Crop tracking",
-  // TODO(hi): translate → roles.farmer.highlights.h2.body
-  "roles.farmer.highlights.h2.body": "Follow each crop from sowing through harvest.",
-  // TODO(hi): translate → roles.farmer.highlights.h3.title
-  "roles.farmer.highlights.h3.title": "Market information",
-  // TODO(hi): translate → roles.farmer.highlights.h3.body
-  "roles.farmer.highlights.h3.body": "Understand prices before deciding when to sell.",
-  // TODO(hi): translate → roles.farmer.highlights.h4.title
-  "roles.farmer.highlights.h4.title": "Services nearby",
-  // TODO(hi): translate → roles.farmer.highlights.h4.body
-  "roles.farmer.highlights.h4.body": "Find labour, equipment, transport and storage in one search.",
-  // TODO(hi): translate → roles.farmer.seo.title
-  "roles.farmer.seo.title": "KRISHIMA for farmers",
-  // TODO(hi): translate → roles.farmer.seo.description
-  "roles.farmer.seo.description": "Farm records, crop tracking, weather, market information and service discovery in one platform.",
+    "KRISHIMA इस तरह बन रही है कि किसान अपने खेत और फ़सल का हिसाब एक जगह रख सके, मौसम के हिसाब से काम कर सके, और जब ज़रूरत हो तो मज़दूर, मशीन, ढुलाई और भंडारण ढूँढ सके — पिछले साल की बातें भी याद रहें।",
+  "roles.farmer.needs": "खेत और भूखंड का रिकॉर्ड, फ़सल की समय-सारिणी, मौसम, मंडी की जानकारी और सेवाओं की खोज।",
+  "roles.farmer.requirements":
+    "हिसाब रखने के लिए बस एक खाता चाहिए। उपज बेचने के लिए ज़रूरी होगा कि उस सेवा के शुरू होने पर सत्यापन हो जाए।",
+  "roles.farmer.highlights.h1.title": "खेत का हिसाब",
+  "roles.farmer.highlights.h1.body": "भूखंड, फ़सल और मौसम एक जगह, बिखरी हुई पर्चियों की जगह।",
+  "roles.farmer.highlights.h2.title": "फ़सल पर नज़र",
+  "roles.farmer.highlights.h2.body": "बोने से लेकर कटाई तक हर फ़सल पर नज़र रखें।",
+  "roles.farmer.highlights.h3.title": "मंडी की जानकारी",
+  "roles.farmer.highlights.h3.body": "बेचने का समय तय करने से पहले दाम समझें।",
+  "roles.farmer.highlights.h4.title": "पास की सेवाएँ",
+  "roles.farmer.highlights.h4.body": "मज़दूर, मशीन, ढुलाई और भंडारण एक ही खोज में।",
+  "roles.farmer.seo.title": "किसानों के लिए KRISHIMA",
+  "roles.farmer.seo.description":
+    "खेत का हिसाब, फ़सल पर नज़र, मौसम, मंडी की जानकारी और सेवाओं की खोज — एक ही प्लेटफ़ॉर्म पर।",
 
-  // TODO(hi): translate → roles.buyer.name
-  "roles.buyer.name": "Buyer",
-  // TODO(hi): translate → roles.buyer.short
-  "roles.buyer.short": "Discover produce and agricultural inputs from verified sellers.",
-  // TODO(hi): translate → roles.buyer.headline
-  "roles.buyer.headline": "Find produce and inputs with confidence",
-  // TODO(hi): translate → roles.buyer.long
+  "roles.buyer.name": "खरीदार",
+  "roles.buyer.short": "सत्यापित विक्रेताओं से उपज और खेती के सामान खोजें।",
+  "roles.buyer.headline": "भरोसे के साथ उपज और सामान खोजें",
   "roles.buyer.long":
-    "Buyers will be able to browse agricultural produce and inputs, filter by category and location, and see which sellers have completed verification — so a purchase decision rests on facts, not guesswork.",
-  // TODO(hi): translate → roles.buyer.needs
-  "roles.buyer.needs": "A clear catalogue, honest seller verification, and records of what was agreed.",
-  // TODO(hi): translate → roles.buyer.requirements
-  "roles.buyer.requirements": "Browsing will be open. Placing orders will require verification once ordering launches.",
-  // TODO(hi): translate → roles.buyer.highlights.h1.title
-  "roles.buyer.highlights.h1.title": "Search that fits agriculture",
-  // TODO(hi): translate → roles.buyer.highlights.h1.body
-  "roles.buyer.highlights.h1.body": "Filter by crop, quantity and location rather than generic keywords.",
-  // TODO(hi): translate → roles.buyer.highlights.h2.title
-  "roles.buyer.highlights.h2.title": "Verified sellers",
-  // TODO(hi): translate → roles.buyer.highlights.h2.body
-  "roles.buyer.highlights.h2.body": "Verification status shown clearly on every listing.",
-  // TODO(hi): translate → roles.buyer.highlights.h3.title
-  "roles.buyer.highlights.h3.title": "Clear quantities and units",
-  // TODO(hi): translate → roles.buyer.highlights.h3.body
-  "roles.buyer.highlights.h3.body": "Controlled units so a quintal never becomes a guess.",
-  // TODO(hi): translate → roles.buyer.highlights.h4.title
-  "roles.buyer.highlights.h4.title": "Records you can refer to",
-  // TODO(hi): translate → roles.buyer.highlights.h4.body
-  "roles.buyer.highlights.h4.body": "What was listed stays on record, unchanged after the fact.",
-  // TODO(hi): translate → roles.buyer.seo.title
-  "roles.buyer.seo.title": "KRISHIMA for buyers",
-  // TODO(hi): translate → roles.buyer.seo.description
-  "roles.buyer.seo.description": "Browse agricultural produce and inputs from verified sellers with clear quantities and units.",
+    "खरीदार खेती की उपज और सामान देख सकेंगे, श्रेणी और जगह के हिसाब से छाँट सकेंगे, और देख सकेंगे कि कौन-से विक्रेता का सत्यापन पूरा हो चुका है — ताकि खरीद का फ़ैसला अनुमान पर नहीं, तथ्यों पर टिके।",
+  "roles.buyer.needs": "साफ़ सूची, ईमानदार सत्यापन, और तय हुई बात का रिकॉर्ड।",
+  "roles.buyer.requirements": "देखना खुला रहेगा। ऑर्डर देना शुरू होने पर सत्यापन ज़रूरी होगा।",
+  "roles.buyer.highlights.h1.title": "खेती के लायक खोज",
+  "roles.buyer.highlights.h1.body": "फ़सल, मात्रा और जगह से छाँटें, आम शब्दों से नहीं।",
+  "roles.buyer.highlights.h2.title": "सत्यापित विक्रेता",
+  "roles.buyer.highlights.h2.body": "हर सूची पर सत्यापन की स्थिति साफ़ दिखती है।",
+  "roles.buyer.highlights.h3.title": "साफ़ मात्रा और इकाई",
+  "roles.buyer.highlights.h3.body": "तय इकाइयाँ, ताकि क्विंटल का मतलब कभी बदल न जाए।",
+  "roles.buyer.highlights.h4.title": "देखने लायक रिकॉर्ड",
+  "roles.buyer.highlights.h4.body": "जो सूची में था वह बाद में भी वैसा ही दर्ज रहता है।",
+  "roles.buyer.seo.title": "खरीदारों के लिए KRISHIMA",
+  "roles.buyer.seo.description":
+    "सत्यापित विक्रेताओं से खेती की उपज और सामान देखें, साफ़ मात्रा और इकाई के साथ।",
 
-  // TODO(hi): translate → roles.retailer.name
-  "roles.retailer.name": "Retailer",
-  // TODO(hi): translate → roles.retailer.short
-  "roles.retailer.short": "Source agricultural stock for a shop or a distribution business.",
-  // TODO(hi): translate → roles.retailer.headline
-  "roles.retailer.headline": "Source stock for your business",
-  // TODO(hi): translate → roles.retailer.long
+  "roles.retailer.name": "दुकानदार",
+  "roles.retailer.short": "दुकान या वितरण के काम के लिए कृषि माल जुटाएँ।",
+  "roles.retailer.headline": "अपने बिज़नेस के लिए माल जुटाएँ",
   "roles.retailer.long":
-    "Retailers will be able to source produce and inputs in the quantities a shop actually needs, keep a record of suppliers, and present a business identity that buyers and sellers can recognise.",
-  // TODO(hi): translate → roles.retailer.needs
-  "roles.retailer.needs": "Business verification, repeatable sourcing, and a clear record of suppliers.",
-  // TODO(hi): translate → roles.retailer.requirements
-  "roles.retailer.requirements": "Business verification will be required before trading, reflecting the trust a shop needs to carry.",
-  // TODO(hi): translate → roles.retailer.highlights.h1.title
-  "roles.retailer.highlights.h1.title": "Business identity",
-  // TODO(hi): translate → roles.retailer.highlights.h1.body
-  "roles.retailer.highlights.h1.body": "A verified business profile, separate from a personal account.",
-  // TODO(hi): translate → roles.retailer.highlights.h2.title
-  "roles.retailer.highlights.h2.title": "Bulk quantities",
-  // TODO(hi): translate → roles.retailer.highlights.h2.body
-  "roles.retailer.highlights.h2.body": "Quantities expressed in units a shop actually trades in.",
-  // TODO(hi): translate → roles.retailer.highlights.h3.title
-  "roles.retailer.highlights.h3.title": "Supplier history",
-  // TODO(hi): translate → roles.retailer.highlights.h3.body
-  "roles.retailer.highlights.h3.body": "Know who supplied what, and when.",
-  // TODO(hi): translate → roles.retailer.highlights.h4.title
-  "roles.retailer.highlights.h4.title": "Organization workspace",
-  // TODO(hi): translate → roles.retailer.highlights.h4.body
-  "roles.retailer.highlights.h4.body": "Staff can work in one business workspace with separate permissions.",
-  // TODO(hi): translate → roles.retailer.seo.title
-  "roles.retailer.seo.title": "KRISHIMA for retailers",
-  // TODO(hi): translate → roles.retailer.seo.description
-  "roles.retailer.seo.description": "Source agricultural stock with a verified business identity and clear supplier records.",
+    "दुकानदार उपज और सामान उस मात्रा में जुटा सकेंगे जो दुकान को सच में चाहिए, आपूर्तिकर्ताओं का रिकॉर्ड रख सकेंगे, और एक बिज़नेस पहचान दिखा सकेंगे जिसे खरीदार और विक्रेता दोनों पहचानें।",
+  "roles.retailer.needs": "बिज़नेस का सत्यापन, बार-बार माल जुटाना, और आपूर्तिकर्ताओं का साफ़ रिकॉर्ड।",
+  "roles.retailer.requirements":
+    "कारोबार से पहले बिज़नेस का सत्यापन ज़रूरी होगा, क्योंकि दुकान को भरोसा रखना पड़ता है।",
+  "roles.retailer.highlights.h1.title": "बिज़नेस पहचान",
+  "roles.retailer.highlights.h1.body": "सत्यापित बिज़नेस प्रोफ़ाइल, निजी खाते से अलग।",
+  "roles.retailer.highlights.h2.title": "थोक मात्रा",
+  "roles.retailer.highlights.h2.body": "मात्रा उन इकाइयों में जो दुकान में सच में चलती हैं।",
+  "roles.retailer.highlights.h3.title": "आपूर्ति का इतिहास",
+  "roles.retailer.highlights.h3.body": "जानें किसने क्या दिया, और कब।",
+  "roles.retailer.highlights.h4.title": "संगठन वर्कस्पेस",
+  "roles.retailer.highlights.h4.body": "कर्मचारी एक बिज़नेस वर्कस्पेस में अलग-अलग अनुमतियों के साथ काम कर सकते हैं।",
+  "roles.retailer.seo.title": "दुकानदारों के लिए KRISHIMA",
+  "roles.retailer.seo.description":
+    "सत्यापित बिज़नेस पहचान और साफ़ आपूर्ति रिकॉर्ड के साथ कृषि माल जुटाएँ।",
 
-  // TODO(hi): translate → roles.worker.name
-  "roles.worker.name": "Worker",
-  // TODO(hi): translate → roles.worker.short
-  "roles.worker.short": "Find farm work and keep a record of the work you have done.",
-  // TODO(hi): translate → roles.worker.headline
-  "roles.worker.headline": "Find work and keep a record of it",
-  // TODO(hi): translate → roles.worker.long
+  "roles.worker.name": "मज़दूर",
+  "roles.worker.short": "खेत का काम खोजें और किए गए काम का रिकॉर्ड रखें।",
+  "roles.worker.headline": "काम खोजें और उसका रिकॉर्ड रखें",
   "roles.worker.long":
-    "Workers will be able to see farm work available nearby, apply for it, and keep a record of engagements — a simple history that makes the next opportunity easier to find.",
-  // TODO(hi): translate → roles.worker.needs
-  "roles.worker.needs": "Work listings that are nearby and real, plus a record of engagements.",
-  // TODO(hi): translate → roles.worker.requirements
-  "roles.worker.requirements": "A phone-verified account. Work history starts building with the first engagement.",
-  // TODO(hi): translate → roles.worker.highlights.h1.title
-  "roles.worker.highlights.h1.title": "Work nearby",
-  // TODO(hi): translate → roles.worker.highlights.h1.body
-  "roles.worker.highlights.h1.body": "See work that is within reach, not hundreds of kilometres away.",
-  // TODO(hi): translate → roles.worker.highlights.h2.title
-  "roles.worker.highlights.h2.title": "Apply once",
-  // TODO(hi): translate → roles.worker.highlights.h2.body
-  "roles.worker.highlights.h2.body": "One application per job — no duplicate applications.",
-  // TODO(hi): translate → roles.worker.highlights.h3.title
-  "roles.worker.highlights.h3.title": "Work history",
-  // TODO(hi): translate → roles.worker.highlights.h3.body
-  "roles.worker.highlights.h3.body": "A record of engagements you can point to.",
-  // TODO(hi): translate → roles.worker.highlights.h4.title
-  "roles.worker.highlights.h4.title": "Clear terms",
-  // TODO(hi): translate → roles.worker.highlights.h4.body
-  "roles.worker.highlights.h4.body": "What the work involves and how it is settled, stated up front.",
-  // TODO(hi): translate → roles.worker.seo.title
-  "roles.worker.seo.title": "KRISHIMA for farm workers",
-  // TODO(hi): translate → roles.worker.seo.description
-  "roles.worker.seo.description": "Find farm work nearby and keep a record of the engagements you complete.",
+    "मज़दूर पास में उपलब्ध खेत का काम देख सकेंगे, उसके लिए हाँ कह सकेंगे, और अपने काम का रिकॉर्ड रख सकेंगे — एक सीधा इतिहास जिससे अगला मौका ढूँढना आसान हो।",
+  "roles.worker.needs": "पास के और सच्चे काम की सूची, साथ में किए गए काम का रिकॉर्ड।",
+  "roles.worker.requirements": "फ़ोन से सत्यापित खाता। पहले काम के साथ ही काम का इतिहास बनना शुरू होता है।",
+  "roles.worker.highlights.h1.title": "पास म‌ें काम",
+  "roles.worker.highlights.h1.body": "वह काम देखें जो पहुँच में है, सैकड़ों किलोमीटर दूर नहीं।",
+  "roles.worker.highlights.h2.title": "एक बार आवेदन",
+  "roles.worker.highlights.h2.body": "एक नौकरी पर एक ही आवेदन — दोहरा आवेदन नहीं।",
+  "roles.worker.highlights.h3.title": "काम का इतिहास",
+  "roles.worker.highlights.h3.body": "किए गए काम का रिकॉर्ड, जिसे आप दिखा सकें।",
+  "roles.worker.highlights.h4.title": "साफ़ शर्तें",
+  "roles.worker.highlights.h4.body": "काम में क्या-क्या होगा और पैसा कैसे मिलेगा — पहले से साफ़।",
+  "roles.worker.seo.title": "खेत मज़दूरों के लिए KRISHIMA",
+  "roles.worker.seo.description": "पास में खेत का काम खोजें और किए गए काम का रिकॉर्ड रखें।",
 
-  // TODO(hi): translate → roles.equipment.name
-  "roles.equipment.name": "Equipment owner",
-  // TODO(hi): translate → roles.equipment.short
-  "roles.equipment.short": "Offer tractors, pumps and machinery to farms that need them.",
-  // TODO(hi): translate → roles.equipment.headline
-  "roles.equipment.headline": "Put your machinery to work",
-  // TODO(hi): translate → roles.equipment.long
+  "roles.equipment.name": "मशीन का मालिक",
+  "roles.equipment.short": "जिन खेतों को ज़रूरत हो उन्हें ट्रैक्टर, पंप और मशीन दें।",
+  "roles.equipment.headline": "अपनी मशीन को काम पर लगाएँ",
   "roles.equipment.long":
-    "Equipment owners will be able to list machines, set availability, and take bookings without two farmers ever being promised the same machine at the same time.",
-  // TODO(hi): translate → roles.equipment.needs
-  "roles.equipment.needs": "Listings with real availability, and bookings that cannot overlap.",
-  // TODO(hi): translate → roles.equipment.requirements
-  "roles.equipment.requirements": "Owner verification will be required before taking bookings.",
-  // TODO(hi): translate → roles.equipment.highlights.h1.title
-  "roles.equipment.highlights.h1.title": "Machine listings",
-  // TODO(hi): translate → roles.equipment.highlights.h1.body
-  "roles.equipment.highlights.h1.body": "Describe what you own and when it is free.",
-  // TODO(hi): translate → roles.equipment.highlights.h2.title
-  "roles.equipment.highlights.h2.title": "No double bookings",
-  // TODO(hi): translate → roles.equipment.highlights.h2.body
-  "roles.equipment.highlights.h2.body": "Overlapping bookings are prevented at the database level.",
-  // TODO(hi): translate → roles.equipment.highlights.h3.title
-  "roles.equipment.highlights.h3.title": "Rental history",
-  // TODO(hi): translate → roles.equipment.highlights.h3.body
-  "roles.equipment.highlights.h3.body": "A record of what was rented and when.",
-  // TODO(hi): translate → roles.equipment.highlights.h4.title
-  "roles.equipment.highlights.h4.title": "Reach nearby farms",
-  // TODO(hi): translate → roles.equipment.highlights.h4.body
-  "roles.equipment.highlights.h4.body": "Machines found by the people close enough to use them.",
-  // TODO(hi): translate → roles.equipment.seo.title
-  "roles.equipment.seo.title": "KRISHIMA for equipment owners",
-  // TODO(hi): translate → roles.equipment.seo.description
-  "roles.equipment.seo.description": "List tractors and machinery, set availability and take bookings that cannot overlap.",
+    "मशीन के मालिक अपनी मशीनों की सूची बना सकेंगे, उनके खाली रहने का समय बता सकेंगे, और बुकिंग ले सकेंगे — बिना यह डर कि दो किसानों को एक ही समय पर एक ही मशीन का वादा हो जाए।",
+  "roles.equipment.needs": "सच्ची उपलब्धता वाली सूची, और ऐसी बुकिंग जो एक साथ न हो।",
+  "roles.equipment.requirements": "बुकिंग लेने से पहले मालिक का सत्यापन ज़रूरी होगा।",
+  "roles.equipment.highlights.h1.title": "मशीन की सूची",
+  "roles.equipment.highlights.h1.body": "बताएँ कि आपके पास क्या है और वह कब खाली है।",
+  "roles.equipment.highlights.h2.title": "दोहरी बुकिंग नहीं",
+  "roles.equipment.highlights.h2.body": "एक ही समय की बुकिंग डेटाबेस के स्तर पर रोकी जाती है।",
+  "roles.equipment.highlights.h3.title": "किराए का इतिहास",
+  "roles.equipment.highlights.h3.body": "क्या किराए पर दिया और कब — इसका रिकॉर्ड।",
+  "roles.equipment.highlights.h4.title": "आसपास के खेतों तक पहुँच",
+  "roles.equipment.highlights.h4.body": "मशीन उन्हें मिले जो उसे इस्तेमाल कर सकते हैं।",
+  "roles.equipment.seo.title": "मशीन के मालिकों के लिए KRISHIMA",
+  "roles.equipment.seo.description":
+    "ट्रैक्टर और मशीनों की सूची बनाएँ, उपलब्धता बताएँ और ऐसी बुकिंग लें जो एक साथ न हों।",
 
-  // TODO(hi): translate → roles.transporter.name
-  "roles.transporter.name": "Transporter",
-  // TODO(hi): translate → roles.transporter.short
-  "roles.transporter.short": "Move produce and inputs between farm, market and warehouse.",
-  // TODO(hi): translate → roles.transporter.headline
-  "roles.transporter.headline": "Move what agriculture grows",
-  // TODO(hi): translate → roles.transporter.long
+  "roles.transporter.name": "ट्रांसपोर्टर",
+  "roles.transporter.short": "उपज और सामान खेत, मंडी और गोदाम के बीच पहुँचाएँ।",
+  "roles.transporter.headline": "खेती का उत्पाद आगे पहुँचाएँ",
   "roles.transporter.long":
-    "Transporters will be able to see movement requests that fit their route and capacity, and agree terms before a load is committed.",
-  // TODO(hi): translate → roles.transporter.needs
-  "roles.transporter.needs": "Requests that match a real route, and terms agreed before the load moves.",
-  // TODO(hi): translate → roles.transporter.requirements
-  "roles.transporter.requirements": "Vehicle and identity verification will be required before accepting loads.",
-  // TODO(hi): translate → roles.transporter.highlights.h1.title
-  "roles.transporter.highlights.h1.title": "Loads that fit",
-  // TODO(hi): translate → roles.transporter.highlights.h1.body
-  "roles.transporter.highlights.h1.body": "Requests matched to your route and capacity.",
-  // TODO(hi): translate → roles.transporter.highlights.h2.title
-  "roles.transporter.highlights.h2.title": "Terms before movement",
-  // TODO(hi): translate → roles.transporter.highlights.h2.body
-  "roles.transporter.highlights.h2.body": "What is carried and how it is settled, agreed in advance.",
-  // TODO(hi): translate → roles.transporter.highlights.h3.title
-  "roles.transporter.highlights.h3.title": "Delivery records",
-  // TODO(hi): translate → roles.transporter.highlights.h3.body
-  "roles.transporter.highlights.h3.body": "A record of each completed movement.",
-  // TODO(hi): translate → roles.transporter.highlights.h4.title
-  "roles.transporter.highlights.h4.title": "Vehicle verification",
-  // TODO(hi): translate → roles.transporter.highlights.h4.body
-  "roles.transporter.highlights.h4.body": "Verified vehicles build trust on both sides.",
-  // TODO(hi): translate → roles.transporter.seo.title
-  "roles.transporter.seo.title": "KRISHIMA for transporters",
-  // TODO(hi): translate → roles.transporter.seo.description
-  "roles.transporter.seo.description": "Find agricultural loads that fit your route and agree terms before moving them.",
+    "ट्रांसपोर्टर अपने रास्ते और क्षमता के हिसाब से ढुलाई के अनुरोध देख सकेंगे, और माल ले जाने से पहले शर्तें तय कर सकेंगे।",
+  "roles.transporter.needs": "ऐसे अनुरोध जो सच में रास्ते में पड़ें, और माल चलने से पहले तय शर्तें।",
+  "roles.transporter.requirements": "माल लेने से पहले वाहन और पहचान का सत्यापन ज़रूरी होगा।",
+  "roles.transporter.highlights.h1.title": "अनुकूल भार",
+  "roles.transporter.highlights.h1.body": "आपके रास्ते और क्षमता के हिसाब से अनुरोध।",
+  "roles.transporter.highlights.h2.title": "चलने से पहले शर्तें",
+  "roles.transporter.highlights.h2.body": "क्या जाएगा और पैसा कैसे मिलेगा — पहले से तय।",
+  "roles.transporter.highlights.h3.title": "डिलीवरी का रिकॉर्ड",
+  "roles.transporter.highlights.h3.body": "हर पूरी हुई ढुलाई का रिकॉर्ड।",
+  "roles.transporter.highlights.h4.title": "वाहन का सत्यापन",
+  "roles.transporter.highlights.h4.body": "सत्यापित वाहन दोनों तरफ़ भरोसा बढ़ाते हैं।",
+  "roles.transporter.seo.title": "ट्रांसपोर्टरों के लिए KRISHIMA",
+  "roles.transporter.seo.description":
+    "अपने रास्ते के अनुकूल कृषि भार खोजें और ले जाने से पहले शर्तें तय करें।",
 
-  // TODO(hi): translate → roles.warehouse.name
-  "roles.warehouse.name": "Warehouse",
-  // TODO(hi): translate → roles.warehouse.short
-  "roles.warehouse.short": "Offer storage for produce between harvest and sale.",
-  // TODO(hi): translate → roles.warehouse.headline
-  "roles.warehouse.headline": "Offer storage farmers can rely on",
-  // TODO(hi): translate → roles.warehouse.long
+  "roles.warehouse.name": "गोदाम",
+  "roles.warehouse.short": "कटाई से बिक्री तक उपज के भंडारण की सुविधा दें।",
+  "roles.warehouse.headline": "ऐसा भंडारण दें जिस पर किसान भरोसा करें",
   "roles.warehouse.long":
-    "Warehouses will be able to publish capacity, accept storage requests, and keep an accurate record of what is held and for how long.",
-  // TODO(hi): translate → roles.warehouse.needs
-  "roles.warehouse.needs": "Accurate capacity, clear storage terms, and a record of what is held.",
-  // TODO(hi): translate → roles.warehouse.requirements
-  "roles.warehouse.requirements": "Facility verification will be required before accepting produce.",
-  // TODO(hi): translate → roles.warehouse.highlights.h1.title
-  "roles.warehouse.highlights.h1.title": "Publish capacity",
-  // TODO(hi): translate → roles.warehouse.highlights.h1.body
-  "roles.warehouse.highlights.h1.body": "Show what space is genuinely available.",
-  // TODO(hi): translate → roles.warehouse.highlights.h2.title
-  "roles.warehouse.highlights.h2.title": "Storage terms",
-  // TODO(hi): translate → roles.warehouse.highlights.h2.body
-  "roles.warehouse.highlights.h2.body": "Duration and conditions stated before produce arrives.",
-  // TODO(hi): translate → roles.warehouse.highlights.h3.title
-  "roles.warehouse.highlights.h3.title": "Accurate records",
-  // TODO(hi): translate → roles.warehouse.highlights.h3.body
-  "roles.warehouse.highlights.h3.body": "Know what is held, and since when.",
-  // TODO(hi): translate → roles.warehouse.highlights.h4.title
-  "roles.warehouse.highlights.h4.title": "No overbooking",
-  // TODO(hi): translate → roles.warehouse.highlights.h4.body
-  "roles.warehouse.highlights.h4.body": "Capacity is checked when a request is accepted.",
-  // TODO(hi): translate → roles.warehouse.seo.title
-  "roles.warehouse.seo.title": "KRISHIMA for warehouses",
-  // TODO(hi): translate → roles.warehouse.seo.description
-  "roles.warehouse.seo.description": "Publish storage capacity, accept storage requests and keep accurate records of what is held.",
+    "गोदाम अपनी जगह की उपलब्धता बता सकेंगे, भंडारण के अनुरोध ले सकेंगे, और यह सही रिकॉर्ड रख सकेंगे कि क्या रखा है और कब से।",
+  "roles.warehouse.needs": "सही जगह की जानकारी, साफ़ भंडारण शर्तें, और रखे माल का रिकॉर्ड।",
+  "roles.warehouse.requirements": "उपज लेने से पहले सुविधा का सत्यापन ज़रूरी होगा।",
+  "roles.warehouse.highlights.h1.title": "जगह की जानकारी दें",
+  "roles.warehouse.highlights.h1.body": "दिखाएँ कि सच में कितनी जगह खाली है।",
+  "roles.warehouse.highlights.h2.title": "भंडारण शर्तें",
+  "roles.warehouse.highlights.h2.body": "उपज आने से पहले समय और शर्तें बता दें।",
+  "roles.warehouse.highlights.h3.title": "सही रिकॉर्ड",
+  "roles.warehouse.highlights.h3.body": "जानें क्या रखा है, और कब से।",
+  "roles.warehouse.highlights.h4.title": "जगह से ज़्यादा बुकिंग नहीं",
+  "roles.warehouse.highlights.h4.body": "अनुरोध लेते समय जगह की जाँच होती है।",
+  "roles.warehouse.seo.title": "गोदामों के लिए KRISHIMA",
+  "roles.warehouse.seo.description":
+    "भंडारण की जगह बताएँ, भंडारण अनुरोध लें और रखे माल का सही रिकॉर्ड रखें।",
 
-  // TODO(hi): translate → roles.creator.name
-  "roles.creator.name": "Content creator",
-  // TODO(hi): translate → roles.creator.short
-  "roles.creator.short": "Share agricultural knowledge through writing and video.",
-  // TODO(hi): translate → roles.creator.headline
-  "roles.creator.headline": "Share what you know about farming",
-  // TODO(hi): translate → roles.creator.long
+  "roles.creator.name": "कंटेंट क्रिएटर",
+  "roles.creator.short": "लिखकर और वीडियो से खेती की जानकारी साझा करें।",
+  "roles.creator.headline": "खेती के अपने अनुभव साझा करें",
   "roles.creator.long":
-    "Creators will be able to publish agricultural knowledge and video learning for people who need it in their own language — practical guidance rather than noise.",
-  // TODO(hi): translate → roles.creator.needs
-  "roles.creator.needs": "A place to publish, and an audience that can find the work in their language.",
-  // TODO(hi): translate → roles.creator.requirements
-  "roles.creator.requirements": "A verified account. Published material follows a moderation policy.",
-  // TODO(hi): translate → roles.creator.highlights.h1.title
-  "roles.creator.highlights.h1.title": "Written knowledge",
-  // TODO(hi): translate → roles.creator.highlights.h1.body
-  "roles.creator.highlights.h1.body": "Practical guidance organised by crop and season.",
-  // TODO(hi): translate → roles.creator.highlights.h2.title
-  "roles.creator.highlights.h2.title": "Video learning",
-  // TODO(hi): translate → roles.creator.highlights.h2.body
-  "roles.creator.highlights.h2.body": "Short, useful video for people who learn by watching.",
-  // TODO(hi): translate → roles.creator.highlights.h3.title
-  "roles.creator.highlights.h3.title": "Local languages",
-  // TODO(hi): translate → roles.creator.highlights.h3.body
-  "roles.creator.highlights.h3.body": "Knowledge that reaches people in the language they use.",
-  // TODO(hi): translate → roles.creator.highlights.h4.title
-  "roles.creator.highlights.h4.title": "Moderated publishing",
-  // TODO(hi): translate → roles.creator.highlights.h4.body
-  "roles.creator.highlights.h4.body": "A clear policy keeps advice trustworthy.",
-  // TODO(hi): translate → roles.creator.seo.title
-  "roles.creator.seo.title": "KRISHIMA for content creators",
-  // TODO(hi): translate → roles.creator.seo.description
-  "roles.creator.seo.description": "Publish agricultural knowledge and video learning for people in their own language.",
+    "क्रिएटर खेती की जानकारी और वीडियो से सीखने की सामग्री उन लोगों तक पहुँचा सकेंगे जिन्हें वह अपनी भाषा में चाहिए — काम की बात, शोर नहीं।",
+  "roles.creator.needs": "प्रकाशित करने की जगह, और ऐसे लोग जो उनकी भाषा में उनका काम ढूँढ सकें।",
+  "roles.creator.requirements": "सत्यापित खाता। प्रकाशित सामग्री पर एक समीक्षा नियम लागू होता है।",
+  "roles.creator.highlights.h1.title": "लिखी जानकारी",
+  "roles.creator.highlights.h1.body": "फ़सल और मौसम के हिसाब से काम की सलाह।",
+  "roles.creator.highlights.h2.title": "वीडियो से सीखना",
+  "roles.creator.highlights.h2.body": "देखकर सीखने वालों के लिए छोटा, काम का वीडियो।",
+  "roles.creator.highlights.h3.title": "स्थानीय भाषाएँ",
+  "roles.creator.highlights.h3.body": "जानकारी उसी भाषा में पहुँचे जो लोग बोलते हैं।",
+  "roles.creator.highlights.h4.title": "समीक्षा के बाद प्रकाशन",
+  "roles.creator.highlights.h4.body": "एक साफ़ नियम सलाह को भरोसेमंद रखता है।",
+  "roles.creator.seo.title": "कंटेंट क्रिएटर के लिए KRISHIMA",
+  "roles.creator.seo.description":
+    "खेती की जानकारी और वीडियो से सीखने की सामग्री लोगों की अपनी भाषा में प्रकाशित करें।",
 
   /* -------------------------------------------------------------- features */
-  // TODO(hi): translate → features.eyebrow
-  "features.eyebrow": "Platform features",
-  // TODO(hi): translate → features.title
-  "features.title": "What the platform will bring together",
-  // TODO(hi): translate → features.description
+  "features.eyebrow": "प्लेटफ़ॉर्म की सुविधाएँ",
+  "features.title": "प्लेटफ़ॉर्म क्या-क्या एक साथ लाएगा",
   "features.description":
-    "Ten connected areas, designed to work as one system rather than ten separate apps. Each one is labelled with its real status.",
-  // TODO(hi): translate → features.planned
-  "features.planned": "Planned",
-  // TODO(hi): translate → features.legend
-  "features.legend": "means the feature is being built and is not usable yet.",
+    "दस जुड़े हुए क्षेत्र, जो दस अलग ऐप की तरह नहीं बल्कि एक ही व्यवस्था की तरह काम करेंगे। हर एक पर उसकी असली स्थिति लिखी है।",
+  "features.planned": "प्रस्तावित",
+  "features.legend": "का मतलब है कि सुविधा बन रही है और अभी इस्तेमाल के लायक नहीं है।",
 
-  // TODO(hi): translate → features.farmManagement.title
-  "features.farmManagement.title": "Farm management",
-  // TODO(hi): translate → features.farmManagement.description
-  "features.farmManagement.description": "Plots, seasons and records kept in one place instead of scattered notes.",
-  // TODO(hi): translate → features.cropManagement.title
-  "features.cropManagement.title": "Crop management",
-  // TODO(hi): translate → features.cropManagement.description
-  "features.cropManagement.description": "Follow each crop from sowing through harvest, with what was done and when.",
-  // TODO(hi): translate → features.weather.title
-  "features.weather.title": "Weather information",
-  // TODO(hi): translate → features.weather.description
-  "features.weather.description": "Local conditions to plan sowing, spraying and harvest around.",
-  // TODO(hi): translate → features.mandiPrices.title
-  "features.mandiPrices.title": "Mandi prices",
-  // TODO(hi): translate → features.mandiPrices.description
-  "features.mandiPrices.description": "Market prices to inform when and where to sell.",
-  // TODO(hi): translate → features.marketplace.title
-  "features.marketplace.title": "Agriculture marketplace",
-  // TODO(hi): translate → features.marketplace.description
-  "features.marketplace.description": "Produce and inputs listed with clear quantities, units and seller verification.",
-  // TODO(hi): translate → features.equipmentRental.title
-  "features.equipmentRental.title": "Equipment rental",
-  // TODO(hi): translate → features.equipmentRental.description
-  "features.equipmentRental.description": "Tractors and machinery available nearby, with bookings that cannot overlap.",
-  // TODO(hi): translate → features.employment.title
-  "features.employment.title": "Farm employment",
-  // TODO(hi): translate → features.employment.description
-  "features.employment.description": "Work offered and found nearby, with one application per job.",
-  // TODO(hi): translate → features.transport.title
-  "features.transport.title": "Transport services",
-  // TODO(hi): translate → features.transport.description
-  "features.transport.description": "Move produce between farm, market and warehouse with terms agreed first.",
-  // TODO(hi): translate → features.warehouse.title
-  "features.warehouse.title": "Warehouse services",
-  // TODO(hi): translate → features.warehouse.description
-  "features.warehouse.description": "Storage with published capacity and accurate records of what is held.",
-  // TODO(hi): translate → features.knowledge.title
-  "features.knowledge.title": "Knowledge and community",
-  // TODO(hi): translate → features.knowledge.description
-  "features.knowledge.description": "Practical agricultural guidance and learning, in the languages people actually use.",
+  "features.farmManagement.title": "खेत का प्रबंधन",
+  "features.farmManagement.description": "भूखंड, मौसम और हिसाब एक जगह, बिखरी पर्चियों की जगह।",
+  "features.cropManagement.title": "फ़सल का प्रबंधन",
+  "features.cropManagement.description": "बोने से कटाई तक हर फ़सल पर नज़र, साथ में क्या किया और कब।",
+  "features.weather.title": "मौसम की जानकारी",
+  "features.weather.description": "बोने, छिड़काव और कटाई की योजना बनाने के लिए स्थानीय मौसम।",
+  "features.mandiPrices.title": "मंडी भाव",
+  "features.mandiPrices.description": "कब और कहाँ बेचना है, यह तय करने के लिए बाज़ार भाव।",
+  "features.marketplace.title": "कृषि बाज़ार",
+  "features.marketplace.description": "साफ़ मात्रा, इकाई और विक्रेता के सत्यापन के साथ उपज और सामान।",
+  "features.equipmentRental.title": "मशीन किराए पर",
+  "features.equipmentRental.description": "आसपास उपलब्ध ट्रैक्टर और मशीन, ऐसी बुकिंग के साथ जो एक साथ न हों।",
+  "features.employment.title": "खेत में रोज़गार",
+  "features.employment.description": "पास में काम दें और खोजें, एक नौकरी पर एक ही आवेदन।",
+  "features.transport.title": "ढुलाई की सेवाएँ",
+  "features.transport.description": "खेत, मंडी और गोदाम के बीच उपज ले जाएँ, शर्तें पहले तय करके।",
+  "features.warehouse.title": "गोदाम की सेवाएँ",
+  "features.warehouse.description": "जगह की जानकारी और रखे माल के सही रिकॉर्ड के साथ भंडारण।",
+  "features.knowledge.title": "जानकारी और समुदाय",
+  "features.knowledge.description": "खेती की काम की सलाह और सीखना, उसी भाषा में जो लोग सच में बोलते हैं।",
 
   /* ------------------------------------------------------------- ecosystem */
-  // TODO(hi): translate → ecosystem.eyebrow
-  "ecosystem.eyebrow": "The connected ecosystem",
-  // TODO(hi): translate → ecosystem.title
-  "ecosystem.title": "How the participants connect",
-  // TODO(hi): translate → ecosystem.description
+  "ecosystem.eyebrow": "जुड़ा हुआ तंत्र",
+  "ecosystem.title": "जुड़े लोग आपस में कैसे जुड़ते हैं",
   "ecosystem.description":
-    "Agriculture is a chain of relationships, not isolated transactions. KRISHIMA is designed so each participant can reach the next without leaving the platform.",
-  // TODO(hi): translate → ecosystem.hub
+    "खेती अलग-अलग सौदों का नहीं, रिश्तों की एक श्रृंखला है। KRISHIMA इस तरह बनाई गई है कि हर जुड़ा व्यक्ति प्लेटफ़ॉर्म छोड़े बिना अगले तक पहुँच सके।",
   "ecosystem.hub": "KRISHIMA",
-  // TODO(hi): translate → ecosystem.nodes.farmer
-  "ecosystem.nodes.farmer": "Farmer",
-  // TODO(hi): translate → ecosystem.nodes.buyer
-  "ecosystem.nodes.buyer": "Buyer",
-  // TODO(hi): translate → ecosystem.nodes.retailer
-  "ecosystem.nodes.retailer": "Retailer",
-  // TODO(hi): translate → ecosystem.nodes.worker
-  "ecosystem.nodes.worker": "Worker",
-  // TODO(hi): translate → ecosystem.nodes.equipment
-  "ecosystem.nodes.equipment": "Equipment",
-  // TODO(hi): translate → ecosystem.nodes.transporter
-  "ecosystem.nodes.transporter": "Transport",
-  // TODO(hi): translate → ecosystem.nodes.warehouse
-  "ecosystem.nodes.warehouse": "Warehouse",
-  // TODO(hi): translate → ecosystem.nodes.creator
-  "ecosystem.nodes.creator": "Creator",
-  // TODO(hi): translate → ecosystem.links.farmer.from
-  "ecosystem.links.farmer.from": "Farmer",
-  // TODO(hi): translate → ecosystem.links.farmer.relation
-  "ecosystem.links.farmer.relation": "lists produce, hires labour and equipment, and arranges transport and storage.",
-  // TODO(hi): translate → ecosystem.links.buyer.from
-  "ecosystem.links.buyer.from": "Buyer",
-  // TODO(hi): translate → ecosystem.links.buyer.relation
-  "ecosystem.links.buyer.relation": "discovers produce and inputs from verified sellers.",
-  // TODO(hi): translate → ecosystem.links.retailer.from
-  "ecosystem.links.retailer.from": "Retailer",
-  // TODO(hi): translate → ecosystem.links.retailer.relation
-  "ecosystem.links.retailer.relation": "sources stock in the quantities a business needs.",
-  // TODO(hi): translate → ecosystem.links.worker.from
-  "ecosystem.links.worker.from": "Worker",
-  // TODO(hi): translate → ecosystem.links.worker.relation
-  "ecosystem.links.worker.relation": "finds work nearby and builds a record of engagements.",
-  // TODO(hi): translate → ecosystem.links.equipment.from
-  "ecosystem.links.equipment.from": "Equipment owner",
-  // TODO(hi): translate → ecosystem.links.equipment.relation
-  "ecosystem.links.equipment.relation": "offers machinery to farms that need it, without double bookings.",
-  // TODO(hi): translate → ecosystem.links.transporter.from
-  "ecosystem.links.transporter.from": "Transporter",
-  // TODO(hi): translate → ecosystem.links.transporter.relation
-  "ecosystem.links.transporter.relation": "moves produce and inputs between farm, market and warehouse.",
-  // TODO(hi): translate → ecosystem.links.warehouse.from
-  "ecosystem.links.warehouse.from": "Warehouse",
-  // TODO(hi): translate → ecosystem.links.warehouse.relation
-  "ecosystem.links.warehouse.relation": "stores produce between harvest and sale with accurate records.",
-  // TODO(hi): translate → ecosystem.links.creator.from
-  "ecosystem.links.creator.from": "Content creator",
-  // TODO(hi): translate → ecosystem.links.creator.relation
-  "ecosystem.links.creator.relation": "shares practical knowledge in the languages people use.",
+  "ecosystem.nodes.farmer": "किसान",
+  "ecosystem.nodes.buyer": "खरीदार",
+  "ecosystem.nodes.retailer": "दुकानदार",
+  "ecosystem.nodes.worker": "मज़दूर",
+  "ecosystem.nodes.equipment": "मशीन",
+  "ecosystem.nodes.transporter": "ढुलाई",
+  "ecosystem.nodes.warehouse": "गोदाम",
+  "ecosystem.nodes.creator": "क्रिएटर",
+  "ecosystem.links.farmer.from": "किसान",
+  "ecosystem.links.farmer.relation":
+    "उपज की सूची बनाता है, मज़दूर और मशीन बुलाता है, ढुलाई और भंडारण का इंतज़ाम करता है।",
+  "ecosystem.links.buyer.from": "खरीदार",
+  "ecosystem.links.buyer.relation": "सत्यापित विक्रेताओं से उपज और सामान खोजता है।",
+  "ecosystem.links.retailer.from": "दुकानदार",
+  "ecosystem.links.retailer.relation": "माल उस मात्रा में जुटाता है जो बिज़नेस को चाहिए।",
+  "ecosystem.links.worker.from": "मज़दूर",
+  "ecosystem.links.worker.relation": "पास में काम खोजता है और किए गए काम का रिकॉर्ड बनाता है।",
+  "ecosystem.links.equipment.from": "मशीन का मालिक",
+  "ecosystem.links.equipment.relation": "जिन्हें ज़रूरत हो उन्हें मशीन देता है, बिना दोहरी बुकिंग के।",
+  "ecosystem.links.transporter.from": "ट्रांसपोर्टर",
+  "ecosystem.links.transporter.relation": "उपज और सामान खेत, मंडी और गोदाम के बीच पहुँचाता है।",
+  "ecosystem.links.warehouse.from": "गोदाम",
+  "ecosystem.links.warehouse.relation": "कटाई से बिक्री तक उपज सही रिकॉर्ड के साथ रखता है।",
+  "ecosystem.links.creator.from": "कंटेंट क्रिएटर",
+  "ecosystem.links.creator.relation": "काम की जानकारी उसी भाषा में साझा करता है जो लोग बोलते हैं।",
 
   /* ------------------------------------------------------------------- how */
-  // TODO(hi): translate → how.eyebrow
-  "how.eyebrow": "How it works",
-  // TODO(hi): translate → how.title
-  "how.title": "From account to activity, in four steps",
-  // TODO(hi): translate → how.description
-  "how.description": "A short journey that works the same way for every role.",
-  // TODO(hi): translate → how.stepLabel
-  "how.stepLabel": "Step",
-  // TODO(hi): translate → how.availableNow
-  "how.availableNow": "Available now",
-  // TODO(hi): translate → how.note
+  "how.eyebrow": "यह कैसे काम करता है",
+  "how.title": "खाते से काम तक, चार कदमों में",
+  "how.description": "एक छोटी यात्रा, जो हर भूमिका के लिए एक जैसी है।",
+  "how.stepLabel": "कदम",
+  "how.availableNow": "अभी उपलब्ध",
   "how.note":
-    "The account foundation exists today. The workspaces and services described below are being built — nothing here is presented as live until it is.",
-  // TODO(hi): translate → how.seeFaq
-  "how.seeFaq": "See common questions",
-  // TODO(hi): translate → how.steps.account.title
-  "how.steps.account.title": "Create an account",
-  // TODO(hi): translate → how.steps.account.description
-  "how.steps.account.description": "One identity, with a personal workspace ready from the start.",
-  // TODO(hi): translate → how.steps.workspace.title
-  "how.steps.workspace.title": "Choose a workspace",
-  // TODO(hi): translate → how.steps.workspace.description
-  "how.steps.workspace.description": "Work as yourself, or join an organization with its own members and permissions.",
-  // TODO(hi): translate → how.steps.discover.title
-  "how.steps.discover.title": "Discover tools and services",
-  // TODO(hi): translate → how.steps.discover.description
-  "how.steps.discover.description": "Find the records, information and services that fit what you do.",
-  // TODO(hi): translate → how.steps.connect.title
-  "how.steps.connect.title": "Connect and manage activity",
-  // TODO(hi): translate → how.steps.connect.description
-  "how.steps.connect.description": "Work with other participants and keep a record of what was agreed.",
+    "खाते की बुनियाद आज मौजूद है। नीचे बताए गए वर्कस्पेस और सेवाएँ बन रहे हैं — जब तक बन न जाएँ, इन्हें चालू नहीं बताया जाता।",
+  "how.seeFaq": "आम सवाल देखें",
+  "how.steps.account.title": "खाता बनाएँ",
+  "how.steps.account.description": "एक पहचान, साथ में शुरू से तैयार निजी वर्कस्पेस।",
+  "how.steps.workspace.title": "वर्कस्पेस चुनें",
+  "how.steps.workspace.description":
+    "अपने नाम से काम करें, या ऐसे संगठन से जुड़ें जिसके अपने सदस्य और अनुमतियाँ हों।",
+  "how.steps.discover.title": "औज़ार और सेवाएँ खोजें",
+  "how.steps.discover.description": "वह हिसाब, जानकारी और सेवाएँ खोजें जो आपके काम से मेल खाएँ।",
+  "how.steps.connect.title": "जुड़ें और काम संभालें",
+  "how.steps.connect.description": "दूसरे लोगों के साथ काम करें और तय हुई बात का रिकॉर्ड रखें।",
 
   /* ------------------------------------------------------------ solutions */
-  // TODO(hi): translate → solutions.farmer.eyebrow
-  "solutions.farmer.eyebrow": "Farmer solutions",
-  // TODO(hi): translate → solutions.farmer.title
-  "solutions.farmer.title": "The farmer experience we are building",
-  // TODO(hi): translate → solutions.farmer.description
+  "solutions.farmer.eyebrow": "किसान के लिए समाधान",
+  "solutions.farmer.title": "किसान का अनुभव जो हम बना रहे हैं",
   "solutions.farmer.description":
-    "Records that stay useful across seasons, and services that can be found when they are needed.",
-  // TODO(hi): translate → solutions.farmer.statusNote
-  "solutions.farmer.statusNote": "Every item below is planned. None of these tools is live yet.",
-  // TODO(hi): translate → solutions.farmer.items.records.title
-  "solutions.farmer.items.records.title": "Farm records",
-  // TODO(hi): translate → solutions.farmer.items.records.description
-  "solutions.farmer.items.records.description": "Plots, crops and seasons kept in one place.",
-  // TODO(hi): translate → solutions.farmer.items.crops.title
-  "solutions.farmer.items.crops.title": "Crop tracking",
-  // TODO(hi): translate → solutions.farmer.items.crops.description
-  "solutions.farmer.items.crops.description": "Each crop followed from sowing through harvest.",
-  // TODO(hi): translate → solutions.farmer.items.weather.title
-  "solutions.farmer.items.weather.title": "Weather",
-  // TODO(hi): translate → solutions.farmer.items.weather.description
-  "solutions.farmer.items.weather.description": "Local conditions for planning field work.",
-  // TODO(hi): translate → solutions.farmer.items.market.title
-  "solutions.farmer.items.market.title": "Market information",
-  // TODO(hi): translate → solutions.farmer.items.market.description
-  "solutions.farmer.items.market.description": "Prices to inform when and where to sell.",
-  // TODO(hi): translate → solutions.farmer.items.harvest.title
-  "solutions.farmer.items.harvest.title": "Harvest management",
-  // TODO(hi): translate → solutions.farmer.items.harvest.description
-  "solutions.farmer.items.harvest.description": "What was harvested, and what happened to it.",
-  // TODO(hi): translate → solutions.farmer.items.services.title
-  "solutions.farmer.items.services.title": "Service discovery",
-  // TODO(hi): translate → solutions.farmer.items.services.description
-  "solutions.farmer.items.services.description": "Labour, equipment, transport and storage in one search.",
-  // TODO(hi): translate → solutions.seeFarmer
-  "solutions.seeFarmer": "More for farmers",
+    "ऐसा हिसाब जो मौसम-दर-मौसम काम आए, और ऐसी सेवाएँ जो ज़रूरत के समय मिल जाएँ।",
+  "solutions.farmer.statusNote": "नीचे हर बात प्रस्तावित है। इनमें से कोई औज़ार अभी चालू नहीं है।",
+  "solutions.farmer.items.records.title": "खेत का हिसाब",
+  "solutions.farmer.items.records.description": "भूखंड, फ़सल और मौसम एक ही जगह।",
+  "solutions.farmer.items.crops.title": "फ़सल पर नज़र",
+  "solutions.farmer.items.crops.description": "हर फ़सल बोने से कटाई तक।",
+  "solutions.farmer.items.weather.title": "मौसम",
+  "solutions.farmer.items.weather.description": "खेत के काम की योजना के लिए स्थानीय मौसम।",
+  "solutions.farmer.items.market.title": "मंडी की जानकारी",
+  "solutions.farmer.items.market.description": "कब और कहाँ बेचें, यह तय करने के लिए भाव।",
+  "solutions.farmer.items.harvest.title": "कटाई का प्रबंधन",
+  "solutions.farmer.items.harvest.description": "क्या कटा, और उसका क्या हुआ।",
+  "solutions.farmer.items.services.title": "सेवाओं की खोज",
+  "solutions.farmer.items.services.description": "मज़दूर, मशीन, ढुलाई और भंडारण एक ही खोज में।",
+  "solutions.seeFarmer": "किसानों के लिए और",
 
-  // TODO(hi): translate → solutions.business.eyebrow
-  "solutions.business.eyebrow": "Business solutions",
-  // TODO(hi): translate → solutions.business.title
-  "solutions.business.title": "What businesses gain from the platform",
-  // TODO(hi): translate → solutions.business.description
+  "solutions.business.eyebrow": "बिज़नेस के लिए समाधान",
+  "solutions.business.title": "बिज़नेस को प्लेटफ़ॉर्म से क्या मिलता है",
   "solutions.business.description":
-    "Buyers, retailers, transporters, equipment providers and warehouses all need the same thing: a reliable counterparty and a clear record.",
-  // TODO(hi): translate → solutions.business.statusNote
-  "solutions.business.statusNote": "Every item below is planned. None of these tools is live yet.",
-  // TODO(hi): translate → solutions.business.items.buyers.title
-  "solutions.business.items.buyers.title": "Buyers",
-  // TODO(hi): translate → solutions.business.items.buyers.description
-  "solutions.business.items.buyers.description": "A catalogue with clear quantities and verified sellers.",
-  // TODO(hi): translate → solutions.business.items.retailers.title
-  "solutions.business.items.retailers.title": "Retailers",
-  // TODO(hi): translate → solutions.business.items.retailers.description
-  "solutions.business.items.retailers.description": "Business identity and repeatable sourcing.",
-  // TODO(hi): translate → solutions.business.items.transport.title
-  "solutions.business.items.transport.title": "Transport companies",
-  // TODO(hi): translate → solutions.business.items.transport.description
-  "solutions.business.items.transport.description": "Loads matched to route and capacity.",
-  // TODO(hi): translate → solutions.business.items.equipment.title
-  "solutions.business.items.equipment.title": "Equipment providers",
-  // TODO(hi): translate → solutions.business.items.equipment.description
-  "solutions.business.items.equipment.description": "Machinery bookings that cannot overlap.",
-  // TODO(hi): translate → solutions.business.items.warehouses.title
-  "solutions.business.items.warehouses.title": "Warehouses",
-  // TODO(hi): translate → solutions.business.items.warehouses.description
-  "solutions.business.items.warehouses.description": "Published capacity with accurate records.",
-  // TODO(hi): translate → solutions.business.items.partners.title
-  "solutions.business.items.partners.title": "Other partners",
-  // TODO(hi): translate → solutions.business.items.partners.description
-  "solutions.business.items.partners.description": "Organizations with their own members, roles and permissions.",
-  // TODO(hi): translate → solutions.seeBusiness
-  "solutions.seeBusiness": "More for businesses",
+    "खरीदार, दुकानदार, ट्रांसपोर्टर, मशीन देने वाले और गोदाम — सबको एक ही चीज़ चाहिए: भरोसेमंद सामने वाला और साफ़ रिकॉर्ड।",
+  "solutions.business.statusNote": "नीचे हर बात प्रस्तावित है। इनमें से कोई औज़ार अभी चालू नहीं है।",
+  "solutions.business.items.buyers.title": "खरीदार",
+  "solutions.business.items.buyers.description": "साफ़ मात्रा और सत्यापित विक्रेताओं वाली सूची।",
+  "solutions.business.items.retailers.title": "दुकानदार",
+  "solutions.business.items.retailers.description": "बिज़नेस पहचान और बार-बार माल जुटाना।",
+  "solutions.business.items.transport.title": "ट्रांसपोर्ट कंपनियाँ",
+  "solutions.business.items.transport.description": "रास्ते और क्षमता के हिसाब से भार।",
+  "solutions.business.items.equipment.title": "मशीन देने वाले",
+  "solutions.business.items.equipment.description": "ऐसी मशीन बुकिंग जो एक साथ न हों।",
+  "solutions.business.items.warehouses.title": "गोदाम",
+  "solutions.business.items.warehouses.description": "जगह की जानकारी और सही रिकॉर्ड।",
+  "solutions.business.items.partners.title": "अन्य साझेदार",
+  "solutions.business.items.partners.description": "ऐसे संगठन जिनके अपने सदस्य, भूमिकाएँ और अनुमतियाँ हों।",
+  "solutions.seeBusiness": "बिज़नेस के लिए और",
 
   /* --------------------------------------------------------------- preview */
-  // TODO(hi): translate → preview.eyebrow
-  "preview.eyebrow": "Marketplace preview",
-  // TODO(hi): translate → preview.title
-  "preview.title": "A first look at how listings will work",
-  // TODO(hi): translate → preview.description
+  "preview.eyebrow": "बाज़ार की झलक",
+  "preview.title": "सूचियाँ कैसे काम करेंगी, इसकी पहली झलक",
   "preview.description":
-    "This is a design concept, not live inventory. It shows the shape of a listing: crop, quantity, unit and price.",
-  // TODO(hi): translate → preview.illustrative
-  "preview.illustrative": "Illustrative only",
-  // TODO(hi): translate → preview.illustrativeNote
-  "preview.illustrativeNote": "Sample content for design purposes. No real listings, sellers or prices.",
-  // TODO(hi): translate → preview.sampleMeta
-  "preview.sampleMeta": "Sample listing",
-  // TODO(hi): translate → preview.rows.wheat.name
-  "preview.rows.wheat.name": "Wheat",
-  // TODO(hi): translate → preview.rows.wheat.price
-  "preview.rows.wheat.price": "₹ — sample",
-  // TODO(hi): translate → preview.rows.paddy.name
-  "preview.rows.paddy.name": "Paddy",
-  // TODO(hi): translate → preview.rows.paddy.price
-  "preview.rows.paddy.price": "₹ — sample",
-  // TODO(hi): translate → preview.rows.tomato.name
-  "preview.rows.tomato.name": "Tomato",
-  // TODO(hi): translate → preview.rows.tomato.price
-  "preview.rows.tomato.price": "₹ — sample",
-  // TODO(hi): translate → preview.side.title
-  "preview.side.title": "How listings will work",
-  // TODO(hi): translate → preview.side.filters
-  "preview.side.filters": "Filters by crop, location and quantity.",
-  // TODO(hi): translate → preview.side.verified
-  "preview.side.verified": "Seller verification shown on every listing.",
-  // TODO(hi): translate → preview.side.units
-  "preview.side.units": "Controlled units, so a quintal is always a quintal.",
-  // TODO(hi): translate → preview.side.disclaimer
-  "preview.side.disclaimer": "Prices will come from real listings once the marketplace launches.",
+    "यह एक डिज़ाइन का नमूना है, सच में रखा माल नहीं। यह दिखाता है कि सूची कैसी दिखेगी: फ़सल, मात्रा, इकाई और भाव।",
+  "preview.illustrative": "केवल उदाहरण",
+  "preview.illustrativeNote": "डिज़ाइन के लिए नमूना सामग्री। कोई सच्ची सूची, विक्रेता या भाव नहीं।",
+  "preview.sampleMeta": "नमूना सूची",
+  "preview.rows.wheat.name": "गेहूँ",
+  "preview.rows.wheat.price": "₹ — उदाहरण",
+  "preview.rows.paddy.name": "धान",
+  "preview.rows.paddy.price": "₹ — उदाहरण",
+  "preview.rows.tomato.name": "टमाटर",
+  "preview.rows.tomato.price": "₹ — उदाहरण",
+  "preview.side.title": "सूचियाँ कैसे काम करेंगी",
+  "preview.side.filters": "फ़सल, जगह और मात्रा से छाँटें।",
+  "preview.side.verified": "हर सूची पर विक्रेता का सत्यापन दिखेगा।",
+  "preview.side.units": "तय इकाइयाँ, ताकि क्विंटल हमेशा क्विंटल ही रहे।",
+  "preview.side.disclaimer": "बाज़ार शुरू होने पर भाव सच्ची सूचियों से आएँगे।",
 
   /* ------------------------------------------------------------- community */
-  // TODO(hi): translate → community.eyebrow
-  "community.eyebrow": "Community and knowledge",
-  // TODO(hi): translate → community.title
-  "community.title": "Learning that reaches the people who need it",
-  // TODO(hi): translate → community.description
+  "community.eyebrow": "समुदाय और जानकारी",
+  "community.title": "सीखना उन तक पहुँचे जिन्हें इसकी ज़रूरत है",
   "community.description":
-    "Practical agricultural knowledge is often hard to find in the right language. This area is being designed to change that.",
-  // TODO(hi): translate → community.statusNote
-  "community.statusNote": "Community features are planned. There is no social feed or publishing available yet.",
-  // TODO(hi): translate → community.pillars.knowledge.title
-  "community.pillars.knowledge.title": "Knowledge",
-  // TODO(hi): translate → community.pillars.knowledge.description
-  "community.pillars.knowledge.description": "Practical guidance organised by crop and season, not scattered posts.",
-  // TODO(hi): translate → community.pillars.video.title
-  "community.pillars.video.title": "Video learning",
-  // TODO(hi): translate → community.pillars.video.description
-  "community.pillars.video.description": "Short, useful video for people who learn by watching.",
-  // TODO(hi): translate → community.pillars.community.title
-  "community.pillars.community.title": "Community",
-  // TODO(hi): translate → community.pillars.community.description
-  "community.pillars.community.description": "A place to ask and answer, moderated so advice stays trustworthy.",
+    "खेती की काम की जानकारी सही भाषा में मिलना अक्सर मुश्किल होता है। यह हिस्सा उसे बदलने के लिए बनाया जा रहा है।",
+  "community.statusNote": "समुदाय की सुविधाएँ प्रस्तावित हैं। अभी कोई सामाजिक फ़ीड या प्रकाशन उपलब्ध नहीं है।",
+  "community.pillars.knowledge.title": "जानकारी",
+  "community.pillars.knowledge.description": "फ़सल और मौसम के हिसाब से काम की सलाह, बिखरी पोस्ट नहीं।",
+  "community.pillars.video.title": "वीडियो से सीखना",
+  "community.pillars.video.description": "देखकर सीखने वालों के लिए छोटा, काम का वीडियो।",
+  "community.pillars.community.title": "समुदाय",
+  "community.pillars.community.description": "पूछने और जवाब देने की जगह, समीक्षा के साथ ताकि सलाह भरोसेमंद रहे।",
 
   /* ----------------------------------------------------------------- trust */
-  // TODO(hi): translate → trust.eyebrow
-  "trust.eyebrow": "Trust and security",
-  // TODO(hi): translate → trust.title
-  "trust.title": "What is protected today, and what is coming",
-  // TODO(hi): translate → trust.description
+  "trust.eyebrow": "भरोसा और सुरक्षा",
+  "trust.title": "आज क्या सुरक्षित है, और क्या आने वाला है",
   "trust.description":
-    "We separate what is actually implemented from what is planned. Nothing below is a certification or a guarantee.",
-  // TODO(hi): translate → trust.implementedTitle
-  "trust.implementedTitle": "Implemented today",
-  // TODO(hi): translate → trust.plannedTitle
-  "trust.plannedTitle": "Planned",
-  // TODO(hi): translate → trust.implemented.auth.title
-  "trust.implemented.auth.title": "Verified sign-in",
-  // TODO(hi): translate → trust.implemented.auth.description
+    "हम अलग-अलग बताते हैं कि सच में क्या बन चुका है और क्या प्रस्तावित है। नीचे कोई प्रमाणपत्र या गारंटी नहीं है।",
+  "trust.implementedTitle": "आज लागू",
+  "trust.plannedTitle": "प्रस्तावित",
+  "trust.implemented.auth.title": "सत्यापित लॉगिन",
   "trust.implemented.auth.description":
-    "Tokens are verified against the identity provider's published keys. Forged, expired and wrongly addressed tokens are rejected.",
-  // TODO(hi): translate → trust.implemented.access.title
-  "trust.implemented.access.title": "Deny-by-default access",
-  // TODO(hi): translate → trust.implemented.access.description
+    "टोकन पहचान देने वाली सेवा की सार्वजनिक कुंजियों से जाँचे जाते हैं। नकली, पुराने और गलत पते वाले टोकन अस्वीकार किए जाते हैं।",
+  "trust.implemented.access.title": "पहुँच शुरू में बंद",
   "trust.implemented.access.description":
-    "Every protected action needs an explicit permission, checked in the application and enforced again at the database.",
-  // TODO(hi): translate → trust.implemented.storage.title
-  "trust.implemented.storage.title": "Private document storage",
-  // TODO(hi): translate → trust.implemented.storage.description
+    "हर सुरक्षित काम के लिए साफ़ अनुमति चाहिए, जो ऐप में जाँची जाती है और डेटाबेस में फिर से लागू होती है।",
+  "trust.implemented.storage.title": "निजी दस्तावेज़ भंडारण",
   "trust.implemented.storage.description":
-    "Private files are not publicly listable or downloadable; access is time-limited and deliberate.",
-  // TODO(hi): translate → trust.implemented.privacy.title
-  "trust.implemented.privacy.title": "Careful handling of data",
-  // TODO(hi): translate → trust.implemented.privacy.description
+    "निजी फ़ाइलें सबके लिए सूचीबद्ध या डाउनलोड करने लायक नहीं हैं; पहुँच समय-सीमित और सोच-समझकर दी जाती है।",
+  "trust.implemented.privacy.title": "जानकारी को सँभालकर रखना",
   "trust.implemented.privacy.description":
-    "Logs and error responses are written to avoid exposing personal details, credentials or internal addresses.",
-  // TODO(hi): translate → trust.planned.kyc.title
-  "trust.planned.kyc.title": "Verification (KYC)",
-  // TODO(hi): translate → trust.planned.kyc.description
+    "लॉग और गड़बड़ी के संदेश ऐसे लिखे जाते हैं कि निजी बातें, कुंजियाँ या अंदरूनी पते सामने न आएँ।",
+  "trust.planned.kyc.title": "सत्यापन (KYC)",
   "trust.planned.kyc.description":
-    "Seller, business, vehicle and facility verification with a review queue. Planned, not live.",
-  // TODO(hi): translate → trust.planned.audit.title
-  "trust.planned.audit.title": "Audit trail",
-  // TODO(hi): translate → trust.planned.audit.description
+    "विक्रेता, बिज़नेस, वाहन और सुविधा का सत्यापन, जाँच की कतार के साथ। प्रस्तावित है, चालू नहीं।",
+  "trust.planned.audit.title": "ऑडिट रिकॉर्ड",
   "trust.planned.audit.description":
-    "A record of sensitive actions such as role changes and verification decisions. Planned, not live.",
-  // TODO(hi): translate → trust.planned.moderation.title
-  "trust.planned.moderation.title": "Moderation",
-  // TODO(hi): translate → trust.planned.moderation.description
-  "trust.planned.moderation.description":
-    "Review of listings and published material. Planned, not live.",
-  // TODO(hi): translate → trust.disclaimer
+    "भूमिका बदलने और सत्यापन के फ़ैसले जैसे ज़रूरी कामों का रिकॉर्ड। प्रस्तावित है, चालू नहीं।",
+  "trust.planned.moderation.title": "समीक्षा",
+  "trust.planned.moderation.description": "सूचियों और प्रकाशित सामग्री की जाँच। प्रस्तावित है, चालू नहीं।",
   "trust.disclaimer":
-    "KRISHIMA makes no claim of government certification, partnership or formal compliance at this stage. Those would only ever be stated with evidence.",
+    "KRISHIMA इस समय सरकारी प्रमाणन, साझेदारी या औपचारिक अनुपालन का कोई दावा नहीं करती। ऐसी बात कभी भी सबूत के साथ ही कही जाएगी।",
 
   /* ------------------------------------------------------------------- faq */
-  // TODO(hi): translate → faq.eyebrow
-  "faq.eyebrow": "Frequently asked questions",
-  // TODO(hi): translate → faq.title
-  "faq.title": "Questions people actually ask",
-  // TODO(hi): translate → faq.description
-  "faq.description": "Short, direct answers about accounts, services and what is available today.",
-  // TODO(hi): translate → faq.pageDescription
-  "faq.pageDescription": "Practical answers about account types, services, availability and support.",
-  // TODO(hi): translate → faq.moreQuestions
-  "faq.moreQuestions": "Still have a question?",
-  // TODO(hi): translate → faq.contactUs
-  "faq.contactUs": "Contact us",
-  // TODO(hi): translate → faq.items.accounts.question
-  "faq.items.accounts.question": "Are these separate accounts?",
-  // TODO(hi): translate → faq.items.accounts.answer
+  "faq.eyebrow": "अक्सर पूछे जाने वाले सवाल",
+  "faq.title": "वे सवाल जो लोग सच में पूछते हैं",
+  "faq.description": "खाते, सेवाओं और आज क्या उपलब्ध है — इस पर छोटे, सीधे जवाब।",
+  "faq.pageDescription": "खाते के प्रकार, सेवाएँ, उपलब्धता और सहायता पर काम के जवाब।",
+  "faq.moreQuestions": "अभी भी कोई सवाल है?",
+  "faq.contactUs": "हमसे संपर्क करें",
+  "faq.items.accounts.question": "क्या ये अलग-अलग खाते हैं?",
   "faq.items.accounts.answer":
-    "No. A farmer, buyer or equipment owner is a role a person holds, not a separate login. One identity can carry several roles, each with its own workspace and permissions.",
-  // TODO(hi): translate → faq.items.availability.question
-  "faq.items.availability.question": "Is the platform available now?",
-  // TODO(hi): translate → faq.items.availability.answer
+    "नहीं। किसान, खरीदार या मशीन का मालिक होना इस बात पर निर्भर है कि व्यक्ति क्या काम करता है — ये अलग लॉगिन नहीं हैं। एक पहचान में कई भूमिकाएँ हो सकती हैं, हर एक के अपने वर्कस्पेस और अनुमतियाँ।",
+  "faq.items.availability.question": "क्या प्लेटफ़ॉर्म अभी उपलब्ध है?",
   "faq.items.availability.answer":
-    "The public website is live and the account foundation is built. The agricultural services described here are being built and are labelled as planned wherever they appear.",
-  // TODO(hi): translate → faq.items.services.question
-  "faq.items.services.question": "Which services will be offered first?",
-  // TODO(hi): translate → faq.items.services.answer
+    "सार्वजनिक वेबसाइट चालू है और खाते की बुनियाद बन चुकी है। यहाँ बताई गई कृषि सेवाएँ बन रही हैं, और जहाँ भी दिखें वहाँ प्रस्तावित बताई गई हैं।",
+  "faq.items.services.question": "सबसे पहले कौन-सी सेवाएँ मिलेंगी?",
   "faq.items.services.answer":
-    "Farm and crop records, market and weather information, and the marketplace are the first areas in development. Labour, equipment, transport, warehouse and knowledge follow.",
-  // TODO(hi): translate → faq.items.cost.question
-  "faq.items.cost.question": "How much will it cost?",
-  // TODO(hi): translate → faq.items.cost.answer
+    "खेत और फ़सल का हिसाब, मंडी और मौसम की जानकारी, और बाज़ार — ये पहले बन रहे हैं। उसके बाद मज़दूरी, मशीन, ढुलाई, गोदाम और जानकारी।",
+  "faq.items.cost.question": "इसका कितना खर्च होगा?",
   "faq.items.cost.answer":
-    "Pricing has not been finalised, so we are not quoting figures. When pricing is decided it will be published clearly before anything is charged.",
-  // TODO(hi): translate → faq.items.support.question
-  "faq.items.support.question": "How do I get help?",
-  // TODO(hi): translate → faq.items.support.answer
+    "कीमत अभी तय नहीं हुई, इसलिए हम कोई आँकड़ा नहीं बता रहे। जब कीमत तय होगी, पैसा लेने से पहले साफ़-साफ़ बता दी जाएगी।",
+  "faq.items.support.question": "मदद कैसे मिलेगी?",
   "faq.items.support.answer":
-    "Use the help page for guidance on this website. A support channel for platform accounts will be published when account creation opens.",
-  // TODO(hi): translate → faq.items.data.question
-  "faq.items.data.question": "What happens to my data?",
-  // TODO(hi): translate → faq.items.data.answer
+    "इस वेबसाइट के बारे में मार्गदर्शन के लिए मदद पेज देखें। खाता बनना शुरू होने पर प्लेटफ़ॉर्म खातों के लिए सहायता का ज़रिया भी बता दिया जाएगा।",
+  "faq.items.data.question": "मेरी जानकारी का क्या होता है?",
   "faq.items.data.answer":
-    "Access is denied by default and granted explicitly. Our privacy policy is a draft until it has been legally reviewed, and it is marked as such.",
+    "पहुँच शुरू में बंद रहती है और साफ़-साफ़ दी जाती है। हमारी गोपनीयता नीति तब तक ड्राफ़्ट है जब तक उसकी कानूनी जाँच न हो जाए, और उसे ड्राफ़्ट ही बताया गया है।",
 
   /* ------------------------------------------------------------- final cta */
-  // TODO(hi): translate → finalCta.title
-  "finalCta.title": "Be part of building agriculture's digital foundation",
-  // TODO(hi): translate → finalCta.description
+  "finalCta.title": "कृषि की डिजिटल बुनियाद बनाने में शामिल हों",
   "finalCta.description":
-    "Registration is being built. Until it opens, you can explore the platform and tell us what your work needs.",
-  // TODO(hi): translate → finalCta.secondary
-  "finalCta.secondary": "Get in touch",
-  // TODO(hi): translate → finalCta.note
-  "finalCta.note": "No payment is required and nothing is charged on this website.",
+    "पंजीकरण बन रहा है। जब तक वह खुले, आप प्लेटफ़ॉर्म देख सकते हैं और बता सकते हैं कि आपके काम को क्या चाहिए।",
+  "finalCta.secondary": "संपर्क करें",
+  "finalCta.note": "किसी भी भुगतान की ज़रूरत नहीं है और इस वेबसाइट पर कोई पैसा नहीं लिया जाता।",
 
   /* ---------------------------------------------------------------- footer */
-  // TODO(hi): translate → footer.tagline
-  "footer.tagline": "An agriculture super-application for India, built for the whole value chain.",
-  // TODO(hi): translate → footer.platform
-  "footer.platform": "Platform",
-  // TODO(hi): translate → footer.solutions
-  "footer.solutions": "Account categories",
-  // TODO(hi): translate → footer.support
-  "footer.support": "Help and legal",
-  // TODO(hi): translate → footer.contact
-  "footer.contact": "Contact",
-  // TODO(hi): translate → footer.contactUnavailable
-  "footer.contactUnavailable": "A support channel will be published when accounts open.",
-  // TODO(hi): translate → footer.rights
-  "footer.rights": "All rights reserved.",
-  // TODO(hi): translate → footer.platformNote
-  "footer.platformNote": "KRISHIMA is in active development. Features marked as planned are not yet available.",
+  "footer.tagline": "भारत के लिए एक कृषि सुपर-ऐप, पूरी मूल्य श्रृंखला के लिए बनाया गया।",
+  "footer.platform": "प्लेटफ़ॉर्म",
+  "footer.solutions": "खाता श्रेणियाँ",
+  "footer.support": "मदद और कानूनी",
+  "footer.contact": "संपर्क",
+  "footer.contactUnavailable": "खाते खुलने पर सहायता का ज़रिया बता दिया जाएगा।",
+  "footer.rights": "सर्वाधिकार सुरक्षित।",
+  "footer.platformNote": "KRISHIMA अभी बन रही है। जो सुविधाएँ प्रस्तावित बताई गई हैं वे अभी उपलब्ध नहीं हैं।",
 
   /* ------------------------------------------------------------------ meta */
-  // TODO(hi): translate → meta.home.title
-  "meta.home.title": "KRISHIMA — one platform for Indian agriculture",
-  // TODO(hi): translate → meta.home.description
+  "meta.home.title": "KRISHIMA — भारतीय कृषि के लिए एक प्लेटफ़ॉर्म",
   "meta.home.description":
-    "KRISHIMA connects farmers, buyers, retailers, workers, equipment owners, transporters, warehouses and creators in one multilingual agriculture platform.",
-  // TODO(hi): translate → meta.about.title
-  "meta.about.title": "About KRISHIMA",
-  // TODO(hi): translate → meta.about.description
-  "meta.about.description": "What KRISHIMA is, the principles it is built on, and where development stands today.",
-  // TODO(hi): translate → meta.services.title
-  "meta.services.title": "Services",
-  // TODO(hi): translate → meta.services.description
-  "meta.services.description": "The ten connected areas KRISHIMA will bring together, with honest status for each.",
-  // TODO(hi): translate → meta.howItWorks.title
-  "meta.howItWorks.title": "How it works",
-  // TODO(hi): translate → meta.howItWorks.description
-  "meta.howItWorks.description": "From creating an account to managing activity, in four steps.",
-  // TODO(hi): translate → meta.faq.title
-  "meta.faq.title": "Frequently asked questions",
-  // TODO(hi): translate → meta.faq.description
-  "meta.faq.description": "Answers about account types, service availability, pricing and support.",
-  // TODO(hi): translate → meta.contact.title
-  "meta.contact.title": "Contact",
-  // TODO(hi): translate → meta.contact.description
-  "meta.contact.description": "Reach the KRISHIMA team about the platform, services or partnership.",
-  // TODO(hi): translate → meta.help.title
-  "meta.help.title": "Help",
-  // TODO(hi): translate → meta.help.description
-  "meta.help.description": "Guidance on using this website, languages, accessibility and reporting a problem.",
-  // TODO(hi): translate → meta.privacy.title
-  "meta.privacy.title": "Privacy policy (draft)",
-  // TODO(hi): translate → meta.privacy.description
-  "meta.privacy.description": "How KRISHIMA handles personal data. This policy is a draft pending legal review.",
-  // TODO(hi): translate → meta.terms.title
-  "meta.terms.title": "Terms of use (draft)",
-  // TODO(hi): translate → meta.terms.description
-  "meta.terms.description": "The terms for using KRISHIMA. These terms are a draft pending legal review.",
-  // TODO(hi): translate → meta.notFound.title
-  "meta.notFound.title": "Page not found",
-  // TODO(hi): translate → meta.notFound.description
-  "meta.notFound.description": "The page you were looking for does not exist.",
+    "KRISHIMA किसानों, खरीदारों, दुकानदारों, मज़दूरों, मशीन के मालिकों, ट्रांसपोर्टरों, गोदामों और क्रिएटरों को एक बहुभाषी कृषि प्लेटफ़ॉर्म पर जोड़ती है।",
+  "meta.about.title": "KRISHIMA के बारे में",
+  "meta.about.description": "KRISHIMA क्या है, किन सिद्धांतों पर बनी है, और आज विकास कहाँ तक पहुँचा है।",
+  "meta.services.title": "सेवाएँ",
+  "meta.services.description": "दस जुड़े क्षेत्र जिन्हें KRISHIMA एक साथ लाएगी, हर एक की सच्ची स्थिति के साथ।",
+  "meta.howItWorks.title": "यह कैसे काम करता है",
+  "meta.howItWorks.description": "खाता बनाने से काम संभालने तक, चार कदमों में।",
+  "meta.faq.title": "अक्सर पूछे जाने वाले सवाल",
+  "meta.faq.description": "खाते के प्रकार, सेवाओं की उपलब्धता, कीमत और सहायता पर जवाब।",
+  "meta.contact.title": "संपर्क",
+  "meta.contact.description": "प्लेटफ़ॉर्म, सेवाओं या साझेदारी के बारे में KRISHIMA टीम से संपर्क करें।",
+  "meta.help.title": "मदद",
+  "meta.help.description": "इस वेबसाइट के इस्तेमाल, भाषाओं, सुगमता और गड़बड़ी बताने पर मार्गदर्शन।",
+  "meta.privacy.title": "गोपनीयता नीति (ड्राफ़्ट)",
+  "meta.privacy.description": "KRISHIMA निजी जानकारी कैसे सँभालती है। यह नीति कानूनी जाँच तक ड्राफ़्ट है।",
+  "meta.terms.title": "उपयोग की शर्तें (ड्राफ़्ट)",
+  "meta.terms.description": "KRISHIMA इस्तेमाल करने की शर्तें। ये शर्तें कानूनी जाँच तक ड्राफ़्ट हैं।",
+  "meta.notFound.title": "पेज नहीं मिला",
+  "meta.notFound.description": "जो पेज आप खोज रहे थे वह मौजूद नहीं है।",
 
   /* ----------------------------------------------------------------- about */
-  // TODO(hi): translate → about.eyebrow
-  "about.eyebrow": "About",
-  // TODO(hi): translate → about.title
-  "about.title": "Agriculture deserves better software",
-  // TODO(hi): translate → about.description
+  "about.eyebrow": "हमारे बारे में",
+  "about.title": "खेती को बेहतर सॉफ़्टवेयर मिलना चाहिए",
   "about.description":
-    "KRISHIMA exists to give every participant in Indian agriculture one trusted place to keep records, find services and work with each other.",
-  // TODO(hi): translate → about.missionTitle
-  "about.missionTitle": "Why we are building it",
-  // TODO(hi): translate → about.mission
+    "KRISHIMA इसलिए है कि भारतीय खेती से जुड़े हर व्यक्ति को हिसाब रखने, सेवाएँ खोजने और एक-दूसरे के साथ काम करने की एक भरोसेमंद जगह मिले।",
+  "about.missionTitle": "हम इसे क्यों बना रहे हैं",
   "about.mission":
-    "Agricultural work is connected in reality but fragmented in software. A farmer's records, a buyer's catalogue, a worker's history and a transporter's route all describe the same value chain, yet each usually lives somewhere separate. KRISHIMA is designed as one system so that information and trust can move with the work.",
-  // TODO(hi): translate → about.principlesTitle
-  "about.principlesTitle": "Principles",
-  // TODO(hi): translate → about.principles.trust.title
-  "about.principles.trust.title": "Safety by construction",
-  // TODO(hi): translate → about.principles.trust.description
-  "about.principles.trust.description": "Access is denied by default, enforced in the database as well as the application.",
-  // TODO(hi): translate → about.principles.rural.title
-  "about.principles.rural.title": "Built for rural India",
-  // TODO(hi): translate → about.principles.rural.description
-  "about.principles.rural.description": "Mobile-first, light on data, and readable on a low-cost phone.",
-  // TODO(hi): translate → about.principles.modular.title
-  "about.principles.modular.title": "One system, modular inside",
-  // TODO(hi): translate → about.principles.modular.description
-  "about.principles.modular.description": "Each domain can change without disturbing the others.",
-  // TODO(hi): translate → about.principles.languages.title
-  "about.principles.languages.title": "Language is not an afterthought",
-  // TODO(hi): translate → about.principles.languages.description
-  "about.principles.languages.description": "English and Hindi at launch, with room for regional languages without redesign.",
-  // TODO(hi): translate → about.statusTitle
-  "about.statusTitle": "Where things stand",
-  // TODO(hi): translate → about.status
+    "खेती का काम असल में जुड़ा हुआ है, पर सॉफ़्टवेयर में बिखरा हुआ है। किसान का हिसाब, खरीदार की सूची, मज़दूर का इतिहास और ट्रांसपोर्टर का रास्ता — सब एक ही मूल्य श्रृंखला की बात करते हैं, फिर भी हर एक अलग जगह रहता है। KRISHIMA एक ही व्यवस्था के रूप में बनाई गई है, ताकि जानकारी और भरोसा काम के साथ चल सकें।",
+  "about.principlesTitle": "सिद्धांत",
+  "about.principles.trust.title": "बनावट में ही सुरक्षा",
+  "about.principles.trust.description": "पहुँच शुरू में बंद, और डेटाबेस के साथ-साथ ऐप में भी लागू।",
+  "about.principles.rural.title": "गाँव-देहात के लिए बनाया",
+  "about.principles.rural.description": "मोबाइल पहले, कम डेटा, और सस्ते फ़ोन पर पढ़ने लायक।",
+  "about.principles.modular.title": "एक व्यवस्था, अंदर से अलग-अलग",
+  "about.principles.modular.description": "हर हिस्सा बदल सकता है, बिना बाकी को छेड़े।",
+  "about.principles.languages.title": "भाषा बाद की बात नहीं",
+  "about.principles.languages.description":
+    "शुरू में अंग्रेज़ी और हिंदी, और क्षेत्रीय भाषाओं के लिए बिना डिज़ाइन बदले जगह।",
+  "about.statusTitle": "अभी स्थिति क्या है",
   "about.status":
-    "The foundation — authentication, access rules, the design system and this website — is built. The agricultural services described across this site are being built and are labelled as planned wherever they appear. We would rather say what is true than look further along than we are.",
-  // TODO(hi): translate → about.contactCta
-  "about.contactCta": "Talk to us",
+    "बुनियाद — लॉगिन, पहुँच के नियम, डिज़ाइन सिस्टम और यह वेबसाइट — बन चुकी है। इस साइट पर बताई गई कृषि सेवाएँ बन रही हैं और जहाँ भी दिखें वहाँ प्रस्तावित बताई गई हैं। हम आगे से बढ़कर दिखने के बजाय सच कहना पसंद करते हैं।",
+  "about.contactCta": "हमसे बात करें",
 
   /* -------------------------------------------------------------- services */
-  // TODO(hi): translate → servicesPage.eyebrow
-  "servicesPage.eyebrow": "Services",
-  // TODO(hi): translate → servicesPage.title
-  "servicesPage.title": "Everything KRISHIMA will bring together",
-  // TODO(hi): translate → servicesPage.description
+  "servicesPage.eyebrow": "सेवाएँ",
+  "servicesPage.title": "KRISHIMA जो कुछ एक साथ लाएगी",
   "servicesPage.description":
-    "Ten connected areas, designed as one system. Every one is labelled with its real status so you always know what is available.",
-  // TODO(hi): translate → servicesPage.intro
+    "दस जुड़े क्षेत्र, एक ही व्यवस्था के रूप में। हर एक पर उसकी सच्ची स्थिति लिखी है, ताकि आपको हमेशा पता रहे कि क्या उपलब्ध है।",
   "servicesPage.intro":
-    "These services share one identity, one set of access rules and one design. That is what makes them a platform rather than a collection of apps.",
-  // TODO(hi): translate → servicesPage.listTitle
-  "servicesPage.listTitle": "The service catalogue",
-  // TODO(hi): translate → servicesPage.listDescription
-  "servicesPage.listDescription": "What each area covers, and who it is for.",
-  // TODO(hi): translate → servicesPage.statusNote
-  "servicesPage.statusNote": "No service in this catalogue is live yet. Each will be announced when it becomes usable.",
-  // TODO(hi): translate → servicesPage.rolesTitle
-  "servicesPage.rolesTitle": "Find your category",
-  // TODO(hi): translate → servicesPage.rolesDescription
-  "servicesPage.rolesDescription": "Each category has its own page describing what the platform will do for that work.",
-  // TODO(hi): translate → servicesPage.contactCta
-  "servicesPage.contactCta": "Ask about a service",
-  // TODO(hi): translate → servicesPage.audience.farmManagement
-  "servicesPage.audience.farmManagement": "For farmers and farm managers",
-  // TODO(hi): translate → servicesPage.audience.cropManagement
-  "servicesPage.audience.cropManagement": "For farmers and agronomists",
-  // TODO(hi): translate → servicesPage.audience.weather
-  "servicesPage.audience.weather": "For everyone working outdoors",
-  // TODO(hi): translate → servicesPage.audience.mandiPrices
-  "servicesPage.audience.mandiPrices": "For farmers, buyers and retailers",
-  // TODO(hi): translate → servicesPage.audience.marketplace
-  "servicesPage.audience.marketplace": "For farmers, buyers and retailers",
-  // TODO(hi): translate → servicesPage.audience.equipmentRental
-  "servicesPage.audience.equipmentRental": "For equipment owners and farmers",
-  // TODO(hi): translate → servicesPage.audience.employment
-  "servicesPage.audience.employment": "For workers and employers",
-  // TODO(hi): translate → servicesPage.audience.transport
-  "servicesPage.audience.transport": "For transporters and sellers",
-  // TODO(hi): translate → servicesPage.audience.warehouse
-  "servicesPage.audience.warehouse": "For warehouses and producers",
-  // TODO(hi): translate → servicesPage.audience.knowledge
-  "servicesPage.audience.knowledge": "For creators and learners",
+    "इन सेवाओं की एक पहचान, पहुँच के एक नियम और एक ही डिज़ाइन है। इसी से ये एक प्लेटफ़ॉर्म बनती हैं, अलग ऐप का ढेर नहीं।",
+  "servicesPage.listTitle": "सेवाओं की सूची",
+  "servicesPage.listDescription": "हर क्षेत्र क्या कवर करता है, और किसके लिए है।",
+  "servicesPage.statusNote": "इस सूची में कोई सेवा अभी चालू नहीं है। जब भी कोई इस्तेमाल लायक बनेगी, उसकी घोषणा की जाएगी।",
+  "servicesPage.rolesTitle": "अपनी श्रेणी खोजें",
+  "servicesPage.rolesDescription": "हर श्रेणी का अपना पेज है, जो बताता है कि प्लेटफ़ॉर्म उस काम के लिए क्या करेगी।",
+  "servicesPage.contactCta": "किसी सेवा के बारे में पूछें",
+  "servicesPage.audience.farmManagement": "किसानों और खेत प्रबंधकों के लिए",
+  "servicesPage.audience.cropManagement": "किसानों और कृषि विशेषज्ञों के लिए",
+  "servicesPage.audience.weather": "खुले में काम करने वाले सबके लिए",
+  "servicesPage.audience.mandiPrices": "किसानों, खरीदारों और दुकानदारों के लिए",
+  "servicesPage.audience.marketplace": "किसानों, खरीदारों और दुकानदारों के लिए",
+  "servicesPage.audience.equipmentRental": "मशीन के मालिकों और किसानों के लिए",
+  "servicesPage.audience.employment": "मज़दूरों और काम देने वालों के लिए",
+  "servicesPage.audience.transport": "ट्रांसपोर्टरों और बेचने वालों के लिए",
+  "servicesPage.audience.warehouse": "गोदामों और उत्पादकों के लिए",
+  "servicesPage.audience.knowledge": "क्रिएटरों और सीखने वालों के लिए",
 
   /* --------------------------------------------------------------- contact */
-  // TODO(hi): translate → contact.eyebrow
-  "contact.eyebrow": "Contact",
-  // TODO(hi): translate → contact.title
-  "contact.title": "Talk to the KRISHIMA team",
-  // TODO(hi): translate → contact.description
+  "contact.eyebrow": "संपर्क",
+  "contact.title": "KRISHIMA टीम से बात करें",
   "contact.description":
-    "Questions about the platform, a service or a partnership are welcome. The form below is ready; sending is not connected yet.",
-  // TODO(hi): translate → contact.submit
-  "contact.submit": "Send message",
-  // TODO(hi): translate → contact.privacyNote
-  "contact.privacyNote": "We only ask for what is needed to reply. Do not include sensitive personal details.",
-  // TODO(hi): translate → contact.unavailableTitle
-  "contact.unavailableTitle": "Sending is not available yet",
-  // TODO(hi): translate → contact.unavailableWithEmail
-  "contact.unavailableWithEmail": "Message sending is not connected. Please write to",
-  // TODO(hi): translate → contact.unavailableNoEmail
+    "प्लेटफ़ॉर्म, किसी सेवा या साझेदारी के बारे में सवाल का स्वागत है। नीचे का फ़ॉर्म तैयार है; भेजना अभी जुड़ा नहीं है।",
+  "contact.submit": "संदेश भेजें",
+  "contact.privacyNote": "हम सिर्फ़ वही पूछते हैं जो जवाब देने के लिए ज़रूरी है। कृपया निजी जानकारी न लिखें।",
+  "contact.unavailableTitle": "भेजना अभी उपलब्ध नहीं है",
+  "contact.unavailableWithEmail": "संदेश भेजना जुड़ा नहीं है। कृपया लिखें",
   "contact.unavailableNoEmail":
-    "Message sending is not connected yet, and no support address has been published. Your message has not been sent — please keep it and try again once a channel is announced.",
-  // TODO(hi): translate → contact.offlineTitle
-  "contact.offlineTitle": "You appear to be offline",
-  // TODO(hi): translate → contact.offlineBody
-  "contact.offlineBody": "Check your connection and try again. Your message has not been sent.",
-  // TODO(hi): translate → contact.fields.role
-  "contact.fields.role": "I am a",
-  // TODO(hi): translate → contact.fields.rolePlaceholder
-  "contact.fields.rolePlaceholder": "Select a category (optional)",
-  // TODO(hi): translate → contact.fields.roleOther
-  "contact.fields.roleOther": "Something else",
-  // TODO(hi): translate → contact.fields.name
-  "contact.fields.name": "Your name",
-  // TODO(hi): translate → contact.fields.message
-  "contact.fields.message": "Your message",
-  // TODO(hi): translate → contact.fields.messageHint
-  "contact.fields.messageHint": "A few sentences is plenty.",
-  // TODO(hi): translate → contact.errors.name
-  "contact.errors.name": "Please enter your name.",
-  // TODO(hi): translate → contact.errors.message
-  "contact.errors.message": "Please write at least a short message (10 characters or more).",
-  // TODO(hi): translate → contact.errors.summary
-  "contact.errors.summary": "Please correct the highlighted fields.",
-  // TODO(hi): translate → contact.side.title
-  "contact.side.title": "What to expect",
-  // TODO(hi): translate → contact.side.body
+    "संदेश भेजना अभी जुड़ा नहीं है, और कोई सहायता पता प्रकाशित नहीं हुआ। आपका संदेश नहीं भेजा गया — कृपया उसे सँभालकर रखें और जब ज़रिया बताया जाए तब दोबारा कोशिश करें।",
+  "contact.offlineTitle": "लगता है आप ऑफ़लाइन हैं",
+  "contact.offlineBody": "अपना इंटरनेट जाँचें और दोबारा कोशिश करें। आपका संदेश नहीं भेजा गया।",
+  "contact.fields.role": "मैं हूँ",
+  "contact.fields.rolePlaceholder": "श्रेणी चुनें (वैकल्पिक)",
+  "contact.fields.roleOther": "कुछ और",
+  "contact.fields.name": "आपका नाम",
+  "contact.fields.message": "आपका संदेश",
+  "contact.fields.messageHint": "कुछ वाक्य काफ़ी हैं।",
+  "contact.errors.name": "कृपया अपना नाम लिखें।",
+  "contact.errors.message": "कृपया कम से कम एक छोटा संदेश लिखें (10 अक्षर या ज़्यादा)।",
+  "contact.errors.summary": "कृपया चिह्नित जगहें ठीक करें।",
+  "contact.side.title": "क्या उम्मीद रखें",
   "contact.side.body":
-    "This website is the public face of a platform in development. We answer questions about what is being built and when.",
-  // TODO(hi): translate → contact.side.helpTitle
-  "contact.side.helpTitle": "Looking for guidance?",
-  // TODO(hi): translate → contact.side.helpBody
-  "contact.side.helpBody": "The help page covers languages, themes, accessibility and how to report a problem.",
+    "यह वेबसाइट एक बनते हुए प्लेटफ़ॉर्म का सार्वजनिक चेहरा है। हम बताते हैं कि क्या बन रहा है और कब।",
+  "contact.side.helpTitle": "मार्गदर्शन चाहिए?",
+  "contact.side.helpBody": "मदद पेज में भाषाएँ, थीम, सुगमता और गड़बड़ी बताने का तरीका दिया है।",
 
   /* ------------------------------------------------------------------ help */
-  // TODO(hi): translate → helpPage.eyebrow
-  "helpPage.eyebrow": "Help",
-  // TODO(hi): translate → helpPage.title
-  "helpPage.title": "Using this website",
-  // TODO(hi): translate → helpPage.description
-  "helpPage.description": "Practical guidance for the pages you can use today.",
-  // TODO(hi): translate → helpPage.stillStuck
-  "helpPage.stillStuck": "Still stuck? We would rather hear about it.",
-  // TODO(hi): translate → helpPage.topics.start.title
-  "helpPage.topics.start.title": "Finding your way around",
-  // TODO(hi): translate → helpPage.topics.start.body
+  "helpPage.eyebrow": "मदद",
+  "helpPage.title": "इस वेबसाइट का इस्तेमाल",
+  "helpPage.description": "आज आप जिन पेजों का इस्तेमाल कर सकते हैं, उनके लिए काम का मार्गदर्शन।",
+  "helpPage.stillStuck": "अभी भी अटके हैं? हमें बताइए, हम सुनना पसंद करेंगे।",
+  "helpPage.topics.start.title": "रास्ता ढूँढना",
   "helpPage.topics.start.body":
-    "The menu links to the landing page, about, services, how it works and contact. Account categories are under Services.",
-  // TODO(hi): translate → helpPage.topics.account.title
-  "helpPage.topics.account.title": "Accounts",
-  // TODO(hi): translate → helpPage.topics.account.body
+    "मेन्यू में होम, हमारे बारे में, सेवाएँ, यह कैसे काम करता है और संपर्क के लिंक हैं। खाता श्रेणियाँ सेवाएँ के नीचे हैं।",
+  "helpPage.topics.account.title": "खाते",
   "helpPage.topics.account.body":
-    "Account creation is not open yet. Links that are not available are marked as coming soon and do not pretend to work.",
-  // TODO(hi): translate → helpPage.topics.languages.title
-  "helpPage.topics.languages.title": "Changing language",
-  // TODO(hi): translate → helpPage.topics.languages.body
+    "खाता बनाना अभी खुला नहीं है। जो लिंक उपलब्ध नहीं हैं उन पर 'जल्द उपलब्ध' लिखा है और वे काम करने का दिखावा नहीं करते।",
+  "helpPage.topics.languages.title": "भाषा बदलना",
   "helpPage.topics.languages.body":
-    "Use the language selector in the header or footer to switch between English and Hindi. Your choice is remembered on this device.",
-  // TODO(hi): translate → helpPage.topics.accessibility.title
-  "helpPage.topics.accessibility.title": "Accessibility",
-  // TODO(hi): translate → helpPage.topics.accessibility.body
+    "यह वेबसाइट अभी अंग्रेज़ी में उपलब्ध है। भाषा चुनने वाला बटन हेडर और फुटर में मौजूद है, और जैसे-जैसे भाषाएँ पूरी होकर जाँची जाएँगी, वहाँ दिखने लगेंगी — हम किसी भाषा को तब तक नहीं देते जब तक उसका पाठ सच में अनुवादित न हो।",
+  "helpPage.topics.accessibility.title": "सुगमता",
   "helpPage.topics.accessibility.body":
-    "The site works with a keyboard and screen readers, supports reduced motion, and has light and dark themes.",
-  // TODO(hi): translate → helpPage.topics.report.title
-  "helpPage.topics.report.title": "Reporting a problem",
-  // TODO(hi): translate → helpPage.topics.report.body
+    "यह साइट कीबोर्ड और स्क्रीन रीडर के साथ चलती है, कम गति वाले उपकरणों का सम्मान करती है, और इसमें हल्की और गहरी थीम हैं।",
+  "helpPage.topics.report.title": "गड़बड़ी बताना",
   "helpPage.topics.report.body":
-    "If something looks wrong or is hard to use, tell us through the contact page. Specific details help us fix it faster.",
+    "अगर कुछ गलत लगे या इस्तेमाल में दिक्कत हो, तो संपर्क पेज से हमें बताएँ। साफ़ जानकारी से हम जल्दी ठीक कर पाते हैं।",
 
   /* ----------------------------------------------------------------- legal */
-  // TODO(hi): translate → legal.eyebrow
-  "legal.eyebrow": "Legal",
-  // TODO(hi): translate → legal.draftNotice
+  "legal.eyebrow": "कानूनी",
   "legal.draftNotice":
-    "Draft — this document has not yet been reviewed and approved by a legal professional. It is not legal advice.",
-  // TODO(hi): translate → legal.lastUpdatedLabel
-  "legal.lastUpdatedLabel": "Last updated",
-  // TODO(hi): translate → legal.privacyPage.title
-  "legal.privacyPage.title": "Privacy policy (draft)",
-  // TODO(hi): translate → legal.privacyPage.lead
-  "legal.privacyPage.lead": "How KRISHIMA intends to handle personal data. This is a draft.",
-  // TODO(hi): translate → legal.termsPage.title
-  "legal.termsPage.title": "Terms of use (draft)",
-  // TODO(hi): translate → legal.termsPage.lead
-  "legal.termsPage.lead": "The terms for using KRISHIMA. These are a draft.",
-  // TODO(hi): translate → legal.privacy.collect.title
-  "legal.privacy.collect.title": "What we collect",
-  // TODO(hi): translate → legal.privacy.collect.p
+    "ड्राफ़्ट — इस दस्तावेज़ की कानूनी विशेषज्ञ से जाँच और स्वीकृति अभी नहीं हुई है। यह कानूनी सलाह नहीं है।",
+  "legal.lastUpdatedLabel": "आखिरी बार अपडेट",
+  "legal.privacyPage.title": "गोपनीयता नीति (ड्राफ़्ट)",
+  "legal.privacyPage.lead": "KRISHIMA निजी जानकारी कैसे सँभालना चाहती है। यह एक ड्राफ़्ट है।",
+  "legal.termsPage.title": "उपयोग की शर्तें (ड्राफ़्ट)",
+  "legal.termsPage.lead": "KRISHIMA इस्तेमाल करने की शर्तें। ये एक ड्राफ़्ट हैं।",
+  "legal.privacy.collect.title": "हम क्या लेते हैं",
   "legal.privacy.collect.p":
-    "When accounts open, we will collect the details needed to create and secure an account, such as a name, contact details and, where a service requires it, verification documents. This draft does not yet list every field.",
-  // TODO(hi): translate → legal.privacy.use.title
-  "legal.privacy.use.title": "How we use it",
-  // TODO(hi): translate → legal.privacy.use.p
+    "जब खाते खुलेंगे, हम वही जानकारी लेंगे जो खाता बनाने और उसे सुरक्षित रखने के लिए ज़रूरी है, जैसे नाम, संपर्क विवरण और, जहाँ कोई सेवा माँगे, सत्यापन के दस्तावेज़। यह ड्राफ़्ट अभी हर जानकारी नहीं गिनाता।",
+  "legal.privacy.use.title": "हम इसका इस्तेमाल कैसे करते हैं",
   "legal.privacy.use.p":
-    "Information is intended to be used to operate the platform, to keep accounts secure, to verify participants where a service requires it, and to meet legal obligations.",
-  // TODO(hi): translate → legal.privacy.share.title
-  "legal.privacy.share.title": "Sharing",
-  // TODO(hi): translate → legal.privacy.share.p
+    "जानकारी प्लेटफ़ॉर्म चलाने, खाते सुरक्षित रखने, जहाँ सेवा माँगे वहाँ लोगों का सत्यापन करने, और कानूनी ज़िम्मेदारियाँ निभाने के लिए इस्तेमाल की जाएगी।",
+  "legal.privacy.share.title": "साझा करना",
   "legal.privacy.share.p":
-    "We do not sell personal data. Sharing with service providers will be limited to what a specific service requires, and will be described here once finalised.",
-  // TODO(hi): translate → legal.privacy.rights.title
-  "legal.privacy.rights.title": "Your choices",
-  // TODO(hi): translate → legal.privacy.rights.p
+    "हम निजी जानकारी बेचते नहीं। सेवा देने वालों के साथ साझा करना सिर्फ़ उतना ही होगा जितना किसी सेवा के लिए ज़रूरी है, और अंतिम रूप तय होने पर यहाँ लिखा जाएगा।",
+  "legal.privacy.rights.title": "आपके विकल्प",
   "legal.privacy.rights.p":
-    "The intended approach is to let you access, correct and delete your information. The exact process is pending legal review.",
-  // TODO(hi): translate → legal.privacy.contact.title
-  "legal.privacy.contact.title": "Contact",
-  // TODO(hi): translate → legal.privacy.contact.p
+    "इरादा यह है कि आप अपनी जानकारी देख, सुधार और हटा सकें। सही तरीका कानूनी जाँच के बाद तय होगा।",
+  "legal.privacy.contact.title": "संपर्क",
   "legal.privacy.contact.p":
-    "Questions about privacy can be raised through the contact page. A dedicated privacy contact will be published when available.",
-  // TODO(hi): translate → legal.terms.use.title
-  "legal.terms.use.title": "Using KRISHIMA",
-  // TODO(hi): translate → legal.terms.use.p
-  "legal.terms.use.p":
-    "These terms will govern use of the platform and this website. They are a draft and are not yet in force.",
-  // TODO(hi): translate → legal.terms.accounts.title
-  "legal.terms.accounts.title": "Accounts",
-  // TODO(hi): translate → legal.terms.accounts.p
-  "legal.terms.accounts.p":
-    "Accounts will be personal to the holder, and the holder will be responsible for keeping access secure.",
-  // TODO(hi): translate → legal.terms.content.title
-  "legal.terms.content.title": "Content and conduct",
-  // TODO(hi): translate → legal.terms.content.p
+    "गोपनीयता से जुड़े सवाल संपर्क पेज से पूछे जा सकते हैं। गोपनीयता के लिए अलग संपर्क तब बताया जाएगा जब उपलब्ध हो।",
+  "legal.terms.use.title": "KRISHIMA का इस्तेमाल",
+  "legal.terms.use.p": "ये शर्तें प्लेटफ़ॉर्म और इस वेबसाइट के इस्तेमाल पर लागू होंगी। ये ड्राफ़्ट हैं और अभी लागू नहीं हैं।",
+  "legal.terms.accounts.title": "खाते",
+  "legal.terms.accounts.p": "खाते खाताधारक के अपने होंगे, और पहुँच सुरक्षित रखना उनकी ज़िम्मेदारी होगी।",
+  "legal.terms.content.title": "सामग्री और आचरण",
   "legal.terms.content.p":
-    "Listings and published material will be subject to moderation. Prohibited conduct will be described in the final terms.",
-  // TODO(hi): translate → legal.terms.liability.title
-  "legal.terms.liability.title": "Liability",
-  // TODO(hi): translate → legal.terms.liability.p
+    "सूचियाँ और प्रकाशित सामग्री समीक्षा के अधीन होंगी। क्या नहीं करना है, यह अंतिम शर्तों में लिखा जाएगा।",
+  "legal.terms.liability.title": "ज़िम्मेदारी",
   "legal.terms.liability.p":
-    "Liability terms have not been drafted. Nothing here limits any right you have under applicable law.",
-  // TODO(hi): translate → legal.terms.changes.title
-  "legal.terms.changes.title": "Changes",
-  // TODO(hi): translate → legal.terms.changes.p
+    "ज़िम्मेदारी की शर्तें अभी नहीं बनीं। यहाँ कुछ भी लागू कानून से आपको मिले किसी अधिकार को सीमित नहीं करता।",
+  "legal.terms.changes.title": "बदलाव",
   "legal.terms.changes.p":
-    "Material changes will be communicated before they take effect. The date at the top of this page will always show the current version.",
+    "बड़े बदलाव लागू होने से पहले बताए जाएँगे। इस पेज पर ऊपर दी तारीख़ हमेशा मौजूदा संस्करण दिखाएगी।",
 
   /* ---------------------------------------------------------- how (page) */
-  // TODO(hi): translate → howPage.eyebrow
-  "howPage.eyebrow": "How it works",
-  // TODO(hi): translate → howPage.title
-  "howPage.title": "The journey, step by step",
-  // TODO(hi): translate → howPage.description
-  "howPage.description": "What happens at each stage, and what state it is in today.",
-  // TODO(hi): translate → howPage.stepsTitle
-  "howPage.stepsTitle": "Four steps",
-  // TODO(hi): translate → howPage.statusPlanned
-  "howPage.statusPlanned": "Being built — not available yet",
-  // TODO(hi): translate → howPage.note
+  "howPage.eyebrow": "यह कैसे काम करता है",
+  "howPage.title": "यात्रा, कदम-दर-कदम",
+  "howPage.description": "हर चरण में क्या होता है, और आज उसकी स्थिति क्या है।",
+  "howPage.stepsTitle": "चार कदम",
+  "howPage.statusPlanned": "बन रहा है — अभी उपलब्ध नहीं",
   "howPage.note":
-    "No step below involves a payment or a binding agreement yet. When that changes, it will be stated clearly.",
-  // TODO(hi): translate → howPage.steps.account.title
-  "howPage.steps.account.title": "Create an account",
-  // TODO(hi): translate → howPage.steps.account.description
+    "नीचे किसी भी कदम में अभी कोई भुगतान या पक्का सौदा नहीं है। जब ऐसा होगा, साफ़-साफ़ बता दिया जाएगा।",
+  "howPage.steps.account.title": "खाता बनाएँ",
   "howPage.steps.account.description":
-    "One identity is created once. From it, a personal workspace exists immediately, and further roles can be added as needed.",
-  // TODO(hi): translate → howPage.steps.workspace.title
-  "howPage.steps.workspace.title": "Choose a workspace",
-  // TODO(hi): translate → howPage.steps.workspace.description
+    "एक पहचान एक बार बनती है। उससे निजी वर्कस्पेस तुरंत मिल जाता है, और ज़रूरत के हिसाब से और भूमिकाएँ जोड़ी जा सकती हैं।",
+  "howPage.steps.workspace.title": "वर्कस्पेस चुनें",
   "howPage.steps.workspace.description":
-    "Work as yourself, or join an organization. An organization has its own members, roles and permissions, and its data stays separate from personal data.",
-  // TODO(hi): translate → howPage.steps.discover.title
-  "howPage.steps.discover.title": "Discover tools and services",
-  // TODO(hi): translate → howPage.steps.discover.description
+    "अपने नाम से काम करें, या किसी संगठन से जुड़ें। संगठन के अपने सदस्य, भूमिकाएँ और अनुमतियाँ होती हैं, और उसका डेटा निजी डेटा से अलग रहता है।",
+  "howPage.steps.discover.title": "औज़ार और सेवाएँ खोजें",
   "howPage.steps.discover.description":
-    "Records, information and services are presented according to the roles you hold, so the platform shows what is relevant rather than everything at once.",
-  // TODO(hi): translate → howPage.steps.connect.title
-  "howPage.steps.connect.title": "Connect and manage activity",
-  // TODO(hi): translate → howPage.steps.connect.description
+    "हिसाब, जानकारी और सेवाएँ आपकी भूमिकाओं के हिसाब से दिखाई जाती हैं, ताकि प्लेटफ़ॉर्म सब कुछ एक साथ न दिखाए, बल्कि जो काम का हो वह दिखाए।",
+  "howPage.steps.connect.title": "जुड़ें और काम संभालें",
   "howPage.steps.connect.description":
-    "Work with other participants, keep a record of what was agreed, and refer back to it later.",
+    "दूसरे लोगों के साथ काम करें, तय हुई बात का रिकॉर्ड रखें, और बाद में उसे फिर देख सकें।",
 
   /* -------------------------------------------------------- roles (page) */
-  // TODO(hi): translate → rolesPage.statusNote
-  "rolesPage.statusNote": "This experience is being built and is not available yet.",
-  // TODO(hi): translate → rolesPage.talkToUs
-  "rolesPage.talkToUs": "Tell us what you need",
-  // TODO(hi): translate → rolesPage.highlightsTitle
-  "rolesPage.highlightsTitle": "What this will include",
-  // TODO(hi): translate → rolesPage.needsTitle
-  "rolesPage.needsTitle": "What this role needs",
-  // TODO(hi): translate → rolesPage.requirementsTitle
-  "rolesPage.requirementsTitle": "Verification and requirements",
-  // TODO(hi): translate → rolesPage.otherRoles
-  "rolesPage.otherRoles": "Other account categories",
+  "rolesPage.statusNote": "यह अनुभव बन रहा है और अभी उपलब्ध नहीं है।",
+  "rolesPage.talkToUs": "बताएँ आपको क्या चाहिए",
+  "rolesPage.highlightsTitle": "इसमें क्या-क्या होगा",
+  "rolesPage.needsTitle": "इस भूमिका को क्या चाहिए",
+  "rolesPage.requirementsTitle": "सत्यापन और शर्तें",
+  "rolesPage.otherRoles": "दूसरी खाता श्रेणियाँ",
 
   /* ------------------------------------------------------------- not found */
-  // TODO(hi): translate → notFound.eyebrow
   "notFound.eyebrow": "404",
-  // TODO(hi): translate → notFound.title
-  "notFound.title": "This page does not exist",
-  // TODO(hi): translate → notFound.description
-  "notFound.description": "The address may have changed, or the link may be incorrect. Here are some useful places to continue.",
-  // TODO(hi): translate → notFound.home
-  "notFound.home": "Go to the home page",
-  // TODO(hi): translate → notFound.helpful
-  "notFound.helpful": "Helpful pages",
+  "notFound.title": "यह पेज मौजूद नहीं है",
+  "notFound.description":
+    "पता बदल गया हो सकता है, या लिंक गलत हो सकता है। आगे बढ़ने के लिए यहाँ कुछ काम की जगहें हैं।",
+  "notFound.home": "होम पेज पर जाएँ",
+  "notFound.helpful": "काम के पेज",
 };

@@ -21,6 +21,7 @@ Status values: `Proposed`, `Accepted`, `Superseded by ADR-NNNN`, `Deprecated`.
 | [0007](0007-provider-adapters.md) | Adapter pattern for external providers | Accepted |
 | [0008](0008-defense-in-depth-authz.md) | Two-layer authorization (application + RLS) | Accepted |
 | [0009](0009-root-level-repository-layout.md) | Root-level canonical repository layout | Accepted |
+| [0010](0010-public-page-rendering.md) | Public-page rendering: prerender at build time | Proposed |
 
 ## Conventions
 

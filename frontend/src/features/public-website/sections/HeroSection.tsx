@@ -67,14 +67,12 @@ export function HeroSection() {
             <picture>
               <source
                 media="(max-width: 640px)"
-                srcSet="/images/hero-farm-800.jpg"
+                srcSet="/images/hero-farm-800.svg"
                 width={800}
                 height={450}
               />
               <img
-                src="/images/hero-farm-1600.jpg"
-                srcSet="/images/hero-farm-800.jpg 800w, /images/hero-farm-1600.jpg 1600w"
-                sizes="(max-width: 1024px) 100vw, 560px"
+                src="/images/hero-farm-1600.svg"
                 width={1600}
                 height={900}
                 alt={t("hero.imageAlt")}

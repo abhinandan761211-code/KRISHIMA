@@ -27,7 +27,7 @@ export function ContactPage() {
     titleKey: "meta.contact.title",
     descriptionKey: "meta.contact.description",
     path: "/contact",
-    imagePath: "/images/og-default.jpg",
+    imagePath: "/images/og-default.svg",
   });
 
   const [params] = useSearchParams();

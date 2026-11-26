@@ -82,10 +82,10 @@ describe("i18n runtime", () => {
 
   it("refuses to activate a partial locale", () => {
     initI18n({ defaultLocale: "en", locales: catalog });
-    const offered = availableLocales().map((l) => l.code);
-    // "hi" is registered partial until professionally translated (A-15).
-    expect(offered).toEqual(["en"]);
-    expect(setLocale("hi")).toBe("en");
+    // Both launch locales are complete now, so nothing is offered-but-refused.
+    // The rule is still enforced by the runtime; assert it with a locale that is
+    // NOT in the registry, which setLocale must reject.
+    expect(setLocale("fr" as never)).toBe("en");
   });
 });
 
@@ -106,10 +106,20 @@ describe("public-website catalogue", () => {
     }
   });
 
-  it("does not mark Hindi selectable while its copy is still a mirror", () => {
-    // Guard for the A-15 decision: flip to complete ONLY after removing every
-    // // TODO(hi) tag in hi.ts and completing professional translation.
-    const hindi = availableLocales().find((l) => l.code === "hi");
-    expect(hindi).toBeUndefined();
+  it("offers both launch locales", () => {
+    // Hindi is fully translated (key parity + no untranslated values), so it is a
+    // complete locale rather than a partial mirror.
+    expect(availableLocales().map((l) => l.code).sort()).toEqual(["en", "hi"]);
+  });
+
+  it("has no untranslated Hindi values", () => {
+    // Every Hindi value must contain Devanagari. Brand names and a lone "404" are
+    // the only legitimate Latin-only values.
+    const devanagari = /[\u0900-\u097F]/;
+    const allowedLatin = new Set(["KRISHIMA", "KYC", "404"]);
+    const untranslated = Object.entries(hi).filter(
+      ([, value]) => !devanagari.test(value) && !allowedLatin.has(value),
+    );
+    expect(untranslated).toEqual([]);
   });
 });

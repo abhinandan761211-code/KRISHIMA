@@ -1,5 +1,6 @@
 import { Accordion, Container, useI18n } from "@krishima/ui";
 import { ACCOUNT_ACTIONS } from "../data/account";
+import { FAQ_ITEMS } from "../data/faq";
 import { PublicSection, SectionHeading } from "../components/PublicSection";
 import { AppLink } from "../components/AppLink";
 
@@ -9,8 +10,6 @@ import { AppLink } from "../components/AppLink";
  * The accordion is the shared WAI-ARIA `Accordion` from @krishima/ui — no second
  * implementation. Questions are data (`FAQ_ITEMS`), answers come from i18n.
  */
-export const FAQ_ITEMS = ["accounts", "availability", "services", "cost", "support", "data"] as const;
-
 export function FaqSection({ variant = "landing" }: { variant?: "landing" | "page" }) {
   const { t } = useI18n();
 

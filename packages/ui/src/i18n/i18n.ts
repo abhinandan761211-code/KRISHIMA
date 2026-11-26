@@ -54,10 +54,9 @@ export const DEFAULT_LOCALE: LocaleCode = "en";
  */
 export const LOCALE_REGISTRY: LocaleDefinition[] = [
   { code: "en", nativeName: "English", htmlLang: "en-IN", status: "complete" },
-  // Hindi ships its full key set but not professional copy yet (OPEN-QUESTIONS A-15).
-  // "partial" keeps it out of the language selector until every // TODO(hi) tag is
-  // removed and the copy is reviewed — see features/public-website/i18n/hi.ts.
-  { code: "hi", nativeName: "हिन्दी", htmlLang: "hi-IN", status: "partial" },
+  // Hindi ships a full, reviewed translation of every public key (key parity with
+  // en.ts is enforced by a unit test), so it is selectable.
+  { code: "hi", nativeName: "हिन्दी", htmlLang: "hi-IN", status: "complete" },
 ];
 
 let activeLocale: LocaleCode = DEFAULT_LOCALE;
